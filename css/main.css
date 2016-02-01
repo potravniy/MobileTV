@@ -39,10 +39,10 @@ body {
     width: 100%;
     height: 100%;
 	overflow: hidden;
-    background-color: #778899;
+    background-color: #000;
 }
 .box-over-view {
-    display: none;
+    /*display: none;*/
     position: absolute;
     width: 100%;
     height: 100%;
@@ -52,7 +52,9 @@ body {
 	overflow: hidden;
 }
 .sidebar {
+    position: relative;
     height: 90%;
+    overflow: hidden;
 }
 .sidebar__slider {
     position: absolute;
@@ -91,6 +93,7 @@ body {
 .sidebar__slider__button.ch-gtv          {  background-position: -200px -1200px;  }
 .sidebar__slider__button.ch-stv          {  background-position: -200px -1400px;  }
 .sidebar__slider__button.ch-ugnayavolna  {  background-position: -200px -1600px;  }
+.sidebar__slider__button.ch-nemo         {  background-position: -200px -1800px;  }
 #ch-1gorodskoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0       0;   opacity: 1;  }
 #ch-3tsyfrovoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -200px;   opacity: 1;  }
 #ch-reporter:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -400px;   opacity: 1;  }
@@ -100,6 +103,7 @@ body {
 #ch-gtv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1200px;   opacity: 1;  }
 #ch-stv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1400px;   opacity: 1;  }
 #ch-ugnayavolna:checked + label.sidebar__slider__button  {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1600px;   opacity: 1;  }
+#ch-nemo:checked + label.sidebar__slider__button         {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1800px;   opacity: 1;  }
 
 
 
