@@ -1,0 +1,189 @@
+*,
+*:before,
+*:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+html {
+    height: 100%;
+    font-size: 16px;
+    background-color: #000;
+}
+@media only screen and (min-height: 400px)  {   html { font-size: 20px;    }   }
+@media only screen and (min-height: 500px)  {   html { font-size: 25px;    }   }
+@media only screen and (min-height: 625px)  {   html { font-size: 31.25px; }   }
+@media only screen and (min-height: 800px)  {   html { font-size: 40px;    }   }
+@media only screen and (min-height: 1000px) {   html { font-size: 50px;    }   }
+@media only screen and (min-height: 1250px) {   html { font-size: 62.5px;  }   }
+@media only screen and (min-height: 1550px) {   html { font-size: 78px;    }   }
+
+
+/*      Для устройств, не поддерживающих vw      */
+
+body {
+    position: relative;
+	height: 40%;
+	overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+    font-size: 24px;
+}
+@media only screen and (orientation: landscape) {
+	body {
+		height: 100%;
+        font-size: inherit;
+	}
+}
+
+.view {
+    width: 100%;
+    height: 100%;
+	overflow: hidden;
+    background-color: #778899;
+}
+.box-over-view {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    font-size: inherit;
+	overflow: hidden;
+}
+.sidebar {
+    height: 90%;
+}
+.sidebar__slider {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 200px;
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.sidebar__slider input {
+    display: none;
+}
+.sidebar__slider__button {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    background-color: #5e5e5e;
+    background: url("../img/_logos.png") no-repeat;
+    background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, #494949, #5e5e5e, #494949);
+    background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, #494949, #5e5e5e, #494949);
+    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, #494949, #5e5e5e, #494949);
+    opacity: 0.5;
+}
+.sidebar__slider__button:hover {
+    opacity: 1;
+    cursor: pointer;
+}
+.sidebar__slider__button.ch-1gorodskoy   {  background-position: -200px       0;  }
+.sidebar__slider__button.ch-3tsyfrovoy   {  background-position: -200px  -200px;  }
+.sidebar__slider__button.ch-reporter     {  background-position: -200px  -400px;  }
+.sidebar__slider__button.ch-academia     {  background-position: -200px  -600px;  }
+.sidebar__slider__button.ch-a1           {  background-position: -200px  -800px;  }
+.sidebar__slider__button.ch-dumskaya     {  background-position: -200px -1000px;  }
+.sidebar__slider__button.ch-gtv          {  background-position: -200px -1200px;  }
+.sidebar__slider__button.ch-stv          {  background-position: -200px -1400px;  }
+.sidebar__slider__button.ch-ugnayavolna  {  background-position: -200px -1600px;  }
+#ch-1gorodskoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0       0;   opacity: 1;  }
+#ch-3tsyfrovoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -200px;   opacity: 1;  }
+#ch-reporter:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -400px;   opacity: 1;  }
+#ch-academia:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -600px;   opacity: 1;  }
+#ch-a1:checked + label.sidebar__slider__button           {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -800px;   opacity: 1;  }
+#ch-dumskaya:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1000px;   opacity: 1;  }
+#ch-gtv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1200px;   opacity: 1;  }
+#ch-stv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1400px;   opacity: 1;  }
+#ch-ugnayavolna:checked + label.sidebar__slider__button  {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1600px;   opacity: 1;  }
+
+
+
+
+
+
+.footer {
+    position: relative;
+    height: 10%;
+    text-align: center;
+    font-size: 1em;
+    line-height: 200%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.footer > * {
+    display: inline-block;
+    text-shadow: 0 0 3px #000;
+    vertical-align: middle;
+}
+.footer__copyright {
+    position: absolute;
+    left: 20px;
+    font-size: 0.5em;
+    color: #778899;
+}
+.footer__banner {
+    white-space: nowrap;
+    font-size: inherit;
+}
+.footer__banner__a {
+    display: block;
+    line-height: 30px;
+    font-size: 1em;
+    padding: 0.3em 0.5em;
+    color: #778899;
+    border: 3px solid #5566aa;
+    border-radius: 5px;
+    text-decoration: none;
+}
+.footer__banner__a:hover {
+    color: #acf;
+}
+.footer__btns {
+    position: absolute;
+    right: 1%;
+    color: #acf;
+    text-align: center;
+    font-size: inherit;
+    white-space: nowrap;
+}
+.footer__btns__fullscr,
+.footer__btns__align,
+.footer__btns__quality {
+    display: inline-block;
+    /*margin: 0 10px;*/
+    padding: 0 6% 0 0;
+    color: #acf;
+    border: none;
+    background-color: transparent;
+    vertical-align: middle;
+    text-shadow: 0 0 3px #000;
+    font-size: inherit;
+}
+button:hover {
+    cursor: pointer;
+}
+.footer__btns i {
+    display: none;
+    font-size: 1.5em;
+    line-height: 100%;
+    vertical-align: middle;
+}
+i.footer__btns__quality__i {
+    font-family: "Arial";
+    font-size: 1.1em;
+    line-height: 100%;
+}
+[title="fit vertical"] {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+.footer__btns i.active {
+    display: inline-block;
+}
