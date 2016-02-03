@@ -9,6 +9,7 @@ var $arrowMenuOnOff = document.querySelector('.menu_on_off')
 var $arrowText = document.querySelector('.menu_on_off__text')
 var startTime = undefined
 var duration = 1000 //  ms
+var duration_fast = 500 //  ms
 
 $btnMenuOff.addEventListener('click', function () {
     requestAnimationFrame(hideMenuHor)
@@ -64,7 +65,7 @@ function turnArrowDonw() {
 }
 function dropDown(timeStamp) {
   if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration
+  var progress = (timeStamp - startTime) / duration_fast
   if (progress <= 1) {
       $arrowMenuOnOff.style.bottom = 100 - 10 * progress + '%'
       requestAnimationFrame(dropDown)

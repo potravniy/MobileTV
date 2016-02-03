@@ -1,29 +1,39 @@
 "use strict"
 
 var $btn = document.querySelector(".footer__btns__align")
-var $signVertical = document.querySelector("[title = fit_vertical]")
-var $signHorisontal = document.querySelector("[title = fit_horisontal]")
+var $video = window.viewerState.$video 
 
-if($signVertical.classList.contains("active")) {
+if($btn.classList.contains("vertical")) {
     window.viewerState.alignVertical = true;
-} else if($signHorisontal.classList.contains("active")) {
+} else if($btn.classList.contains("horisontal")) {
     window.viewerState.alignVertical = false;
 } else {
-    $signHorisontal.classList.add("active")
-    window.viewerState.alignVertical = false;
+    $btn.classList.add("vertical")
+    window.viewerState.alignVertical = true;
 }
+fit()
 
 $btn.addEventListener("click", toggleAlign)
 
 function toggleAlign(event) {
-    event.stopPropagation()
     if(window.viewerState.alignVertical) {
-        $signVertical.classList.remove("active")
-        $signHorisontal.classList.add("active")
+        $btn.classList.remove("vertical")
+        $btn.classList.add("horisontal")
         window.viewerState.alignVertical = false;
     } else {
-        $signHorisontal.classList.remove("active")
-        $signVertical.classList.add("active")
+        $btn.classList.remove("horisontal")
+        $btn.classList.add("vertical")
         window.viewerState.alignVertical = true;
+    }
+    fit()
+}
+
+function fit() {
+    if($btn.classList.contains("vertical")) {
+        $video.style.width = '100%'
+        $video.style.height = '100%'
+    } else {
+        $video.style.width = '100%'
+        $video.style.height = 'auto'
     }
 }

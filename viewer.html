@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-    <!--<link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>-->
     <script type="text/javascript" src="./js/bundle.js"></script>
 </head>
 <body>
-
-    <video src="" class="view" id="view" controls>
-    	<source type="application/x-mpegurl" src="" id="source">
-    </video>
+    
+    <div class="view__box">
+        <video src="" class="view" id="view" controls>
+            <source type="application/x-mpegurl" src="" id="source">
+        </video>
+    </div>
 
     <!--<div class="view">
         <iframe name="view-iframe" height="100%" width="100%" allowmenu-on-offeen="1"
@@ -73,12 +73,13 @@
                     <i title="hight_quality" class="footer__btns__quality__i">HQ</i>
                     <i title="low_quality" class="footer__btns__quality__i active">LQ</i>
                 </button>
-                <button class="footer__btns__align">
-                    <i title="fit_horisontal" class="footer__btns__align__i material-icons active">&#xE8BE;</i>
-                    <i title="fit_vertical" class="footer__btns__align__i material-icons">&#xE8BE;</i>
+                <button class="footer__btns__align vertical">
+                    <div class="footer__btns__align__div div1"></div>
+                    <div class="footer__btns__align__div div2"></div>
+                    <div class="footer__btns__align__div div3"></div>
                 </button>
                 <button class="footer__btns__menu-off">
-                    <i title="menu-off" class="footer__btns__menu-off__i material-icons active">&#xE5D0;</i>
+                    <div class="footer__btns__menu-off__div div1"></div><div class="footer__btns__menu-off__div div2"></div>
                 </button>
             </p>
         </footer>

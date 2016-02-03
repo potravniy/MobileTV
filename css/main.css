@@ -35,11 +35,15 @@ body {
         font-size: inherit;
 	}
 }
-
+.view__box {
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+}
 .view {
     width: 100%;
     height: 100%;
-	overflow: hidden;
+    margin: 0 auto;
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: auto 100%;
@@ -172,7 +176,6 @@ body {
 .footer__btns__align,
 .footer__btns__quality {
     display: inline-block;
-    padding-right: 6%;
     color: #acf;
     border: none;
     background-color: transparent;
@@ -183,11 +186,59 @@ body {
 button:hover {
     cursor: pointer;
 }
-.footer__btns__align__i,
-.footer__btns__menu-off__i {
-    display: none;
-    font-size: 1.5em;
-    line-height: 100%;
+.footer__btns__align {
+    width: 1.2em;
+    height: 1.2em;
+}
+.footer__btns__align__div{
+    width: 0.4em;
+    height: 0.4em;
+    margin: 0 auto;
+}
+.footer__btns__align__div.div1 {
+    border-top: none;
+    border-right: 0.2em solid transparent;
+    border-bottom: 0.4em solid #acf;
+    border-left: 0.2em solid transparent;
+}
+.footer__btns__align__div.div2 {
+    width: 0.13em;
+    background-color: #acf;
+}
+.footer__btns__align__div.div3 {
+    border-top: 0.4em solid #acf;
+    border-right: 0.2em solid transparent;
+    border-bottom: none;
+    border-left: 0.2em solid transparent;
+}
+
+.footer__btns__menu-off {
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    padding: 0 1.6em 0 0.5em;
+}
+.footer__btns__menu-off__div {
+    display: inline-block;
+    width: 0.5em;
+    vertical-align: middle;
+}
+.footer__btns__menu-off__div.div1 {
+    height: 0.12em;
+    margin: 0.19em 0;
+    background-color: #acf;
+}
+.footer__btns__menu-off__div.div2 {
+    display: inline-block;
+    height: 0.5em;
+    margin: 0;
+    border-top: 0.25em solid transparent;
+    border-right: none;
+    border-bottom: 0.25em solid transparent;
+    border-left: 0.5em solid #acf;
+}
+.footer__btns__quality {
+    padding-right: 0.5em;
 }
 .footer__btns__quality__i {
     display: none;
@@ -195,7 +246,7 @@ button:hover {
     font-size: 1.1em;
     line-height: 100%;
 }
-.footer__btns i.active {
+.footer__btns__quality__i.active {
     display: inline-block;
     vertical-align: middle;
 }
@@ -203,7 +254,7 @@ button:hover {
 .footer__btns__menu-off {
     display: none;
 }
-[title="fit_vertical"] {
+.footer__btns__align.horisontal {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
