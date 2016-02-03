@@ -7,21 +7,17 @@
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <!--<link href='https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic' rel='stylesheet' type='text/css'>-->
     <script type="text/javascript" src="./js/bundle.js"></script>
 </head>
 <body>
-    <!--<video x-webkit-airplay="allow" alt="Первый городской" width="100%" height="100%"
-        src="http://77.88.196.133:8081/stvod/stvod-abr-lq/playlist.m3u8"
-        autoplay="1" controls="1">  
-    </video>-->
 
-    <video src="http://77.88.196.133:8081/1tvod/1tvod-abr-lq/playlist.m3u8" class="view" id="view">
-    	<source type="application/x-mpegurl" src="http://77.88.196.133:8081/1tvod/1tvod-abr-lq/playlist.m3u8" id="source">
+    <video src="" class="view" id="view" controls>
+    	<source type="application/x-mpegurl" src="" id="source">
     </video>
 
     <!--<div class="view">
-        <iframe name="view-iframe" height="100%" width="100%" allowfullscreen="1"
+        <iframe name="view-iframe" height="100%" width="100%" allowmenu-on-offeen="1"
             src="http://live-tv.od.ua/tv/dumskaya.php?w=640&amp;h=440&amp;a=1&amp;cnee&amp;ff=1"
             allowtransparency="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" scrolling="no">
             Выберите канал для просмотра
@@ -34,35 +30,35 @@
         <nav class="sidebar">
             <div class="sidebar__slider">
 
-                <input type="radio" name="ch-selector"                  id="ch-1gorodskoy" checked>
-                <label class="sidebar__slider__button ch-1gorodskoy"   for="ch-1gorodskoy"></label>
+                <input type="radio" name="ch-selector"                  id="ch_1gorodskoy">
+                <label class="sidebar__slider__button ch_1gorodskoy"   for="ch_1gorodskoy"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-3tsyfrovoy">
-                <label class="sidebar__slider__button ch-3tsyfrovoy"   for="ch-3tsyfrovoy"></label>
+                <input type="radio" name="ch-selector"                  id="ch_3tsyfrovoy">
+                <label class="sidebar__slider__button ch_3tsyfrovoy"   for="ch_3tsyfrovoy"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-reporter">
-                <label class="sidebar__slider__button ch-reporter"     for="ch-reporter"></label>
+                <input type="radio" name="ch-selector"                  id="ch_reporter">
+                <label class="sidebar__slider__button ch_reporter"     for="ch_reporter"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-academia">
-                <label class="sidebar__slider__button ch-academia"     for="ch-academia"></label>
+                <input type="radio" name="ch-selector"                  id="ch_academia">
+                <label class="sidebar__slider__button ch_academia"     for="ch_academia"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-a1">
-                <label class="sidebar__slider__button ch-a1"           for="ch-a1"></label>
+                <input type="radio" name="ch-selector"                  id="ch_a1">
+                <label class="sidebar__slider__button ch_a1"           for="ch_a1"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-dumskaya">
-                <label class="sidebar__slider__button ch-dumskaya"     for="ch-dumskaya"></label>
+                <input type="radio" name="ch-selector"                  id="ch_dumskaya">
+                <label class="sidebar__slider__button ch_dumskaya"     for="ch_dumskaya"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-gtv">
-                <label class="sidebar__slider__button ch-gtv"          for="ch-gtv"></label>
+                <input type="radio" name="ch-selector"                  id="ch_gtv">
+                <label class="sidebar__slider__button ch_gtv"          for="ch_gtv"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-stv">
-                <label class="sidebar__slider__button ch-stv"          for="ch-stv"></label>
+                <input type="radio" name="ch-selector"                  id="ch_stv">
+                <label class="sidebar__slider__button ch_stv"          for="ch_stv"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-ugnayavolna">
-                <label class="sidebar__slider__button ch-ugnayavolna"  for="ch-ugnayavolna"></label>
+                <input type="radio" name="ch-selector"                  id="ch_ugnayavolna">
+                <label class="sidebar__slider__button ch_ugnayavolna"  for="ch_ugnayavolna"></label>
 
-                <input type="radio" name="ch-selector"                  id="ch-nemo">
-                <label class="sidebar__slider__button ch-nemo"         for="ch-nemo"></label>
+                <input type="radio" name="ch-selector"                  id="ch_nemo">
+                <label class="sidebar__slider__button ch_nemo"         for="ch_nemo"></label>
 
             </div>
         </nav>
@@ -74,20 +70,24 @@
             </p>
             <p class="footer__btns">
                 <button class="footer__btns__quality">
-                    <i title="hight_quality" class="footer__btns__quality__i material-icons active">HQ</i>
-                    <i title="low_quality" class="footer__btns__quality__i material-icons">LQ</i>
+                    <i title="hight_quality" class="footer__btns__quality__i">HQ</i>
+                    <i title="low_quality" class="footer__btns__quality__i active">LQ</i>
                 </button>
-                <!--<button class="footer__btns__align">
+                <button class="footer__btns__align">
                     <i title="fit_horisontal" class="footer__btns__align__i material-icons active">&#xE8BE;</i>
                     <i title="fit_vertical" class="footer__btns__align__i material-icons">&#xE8BE;</i>
-                </button>-->
-                <button class="footer__btns__fullscr">
-                    <i title="fullscreen_on" class="footer__btns__fullscr__i material-icons active">&#xE5D0;</i>
+                </button>
+                <button class="footer__btns__menu-off">
+                    <i title="menu-off" class="footer__btns__menu-off__i material-icons active">&#xE5D0;</i>
                 </button>
             </p>
         </footer>
 
     </div>
-        
+    
+    <div class="menu_on_off">
+        <p class="menu_on_off__text"></p>
+    </div>
+    
 </body>
 </html>

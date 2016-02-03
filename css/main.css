@@ -10,23 +10,24 @@ html {
     font-size: 16px;
     background-color: #000;
 }
-@media only screen and (min-height: 400px)  {   html { font-size: 20px;    }   }
-@media only screen and (min-height: 500px)  {   html { font-size: 25px;    }   }
-@media only screen and (min-height: 625px)  {   html { font-size: 31.25px; }   }
-@media only screen and (min-height: 800px)  {   html { font-size: 40px;    }   }
-@media only screen and (min-height: 1000px) {   html { font-size: 50px;    }   }
-@media only screen and (min-height: 1250px) {   html { font-size: 62.5px;  }   }
-@media only screen and (min-height: 1550px) {   html { font-size: 78px;    }   }
+.view {
+    background-image: url("../img/poster_small.jpg");
+}
 
-
-/*      Для устройств, не поддерживающих vw      */
+@media only screen and (min-height: 400px)  {   html {font-size: 20px;   }    }
+@media only screen and (min-height: 500px)  {   html {font-size: 25px;   }    }
+@media only screen and (min-height: 625px)  {   html {font-size: 31.25px;}    }
+@media only screen and (min-height: 800px)  {   html {font-size: 40px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1000px) {   html {font-size: 50px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1250px) {   html {font-size: 62.5px; }    .view {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1550px) {   html {font-size: 78px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
 
 body {
     position: relative;
 	height: 40%;
 	overflow: hidden;
-    font-family: 'Roboto', sans-serif;
-    font-size: 24px;
+    font-family: 'Arial', sans-serif;
+    font-size: 40%;
 }
 @media only screen and (orientation: landscape) {
 	body {
@@ -39,7 +40,10 @@ body {
     width: 100%;
     height: 100%;
 	overflow: hidden;
-    background-color: #000;
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
+    background-position: center;
 }
 .box-over-view {
     /*display: none;*/
@@ -55,56 +59,59 @@ body {
     position: relative;
     height: 90%;
     overflow: hidden;
+    font-size: inherit;
 }
 .sidebar__slider {
     position: absolute;
     right: 0;
     top: 0;
-    width: 200px;
+    width: 5em;
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+    font-size: inherit;
 }
 .sidebar__slider input {
     display: none;
 }
 .sidebar__slider__button {
     display: block;
-    width: 200px;
-    height: 200px;
-    border-top: 1px solid rgba(0, 0, 0, 0.6);
+    font-size: inherit;
+    width: 5em;
+    height: 5em;
     background-color: #5e5e5e;
     background: url("../img/_logos.png") no-repeat;
-    background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, #494949, #5e5e5e, #494949);
-    background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, #494949, #5e5e5e, #494949);
-    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, #494949, #5e5e5e, #494949);
-    opacity: 0.5;
+    background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
+    background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
+    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
+    background-size: 10em;
+    /*opacity: 0.5;*/
 }
 .sidebar__slider__button:hover {
-    opacity: 1;
+    /*opacity: 1;*/
     cursor: pointer;
 }
-.sidebar__slider__button.ch-1gorodskoy   {  background-position: -200px       0;  }
-.sidebar__slider__button.ch-3tsyfrovoy   {  background-position: -200px  -200px;  }
-.sidebar__slider__button.ch-reporter     {  background-position: -200px  -400px;  }
-.sidebar__slider__button.ch-academia     {  background-position: -200px  -600px;  }
-.sidebar__slider__button.ch-a1           {  background-position: -200px  -800px;  }
-.sidebar__slider__button.ch-dumskaya     {  background-position: -200px -1000px;  }
-.sidebar__slider__button.ch-gtv          {  background-position: -200px -1200px;  }
-.sidebar__slider__button.ch-stv          {  background-position: -200px -1400px;  }
-.sidebar__slider__button.ch-ugnayavolna  {  background-position: -200px -1600px;  }
-.sidebar__slider__button.ch-nemo         {  background-position: -200px -1800px;  }
-#ch-1gorodskoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0       0;   opacity: 1;  }
-#ch-3tsyfrovoy:checked + label.sidebar__slider__button   {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -200px;   opacity: 1;  }
-#ch-reporter:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -400px;   opacity: 1;  }
-#ch-academia:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -600px;   opacity: 1;  }
-#ch-a1:checked + label.sidebar__slider__button           {  background: url("../img/_logos.png") no-repeat;   background-position: 0  -800px;   opacity: 1;  }
-#ch-dumskaya:checked + label.sidebar__slider__button     {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1000px;   opacity: 1;  }
-#ch-gtv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1200px;   opacity: 1;  }
-#ch-stv:checked + label.sidebar__slider__button          {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1400px;   opacity: 1;  }
-#ch-ugnayavolna:checked + label.sidebar__slider__button  {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1600px;   opacity: 1;  }
-#ch-nemo:checked + label.sidebar__slider__button         {  background: url("../img/_logos.png") no-repeat;   background-position: 0 -1800px;   opacity: 1;  }
+.sidebar__slider__button.ch_1gorodskoy   {  background-position: -5em     0,  left;  }
+.sidebar__slider__button.ch_3tsyfrovoy   {  background-position: -5em  -5em,  left;  }
+.sidebar__slider__button.ch_reporter     {  background-position: -5em -10em,  left;  }
+.sidebar__slider__button.ch_academia     {  background-position: -5em -15em,  left;  }
+.sidebar__slider__button.ch_a1           {  background-position: -5em -20em,  left;  }
+.sidebar__slider__button.ch_dumskaya     {  background-position: -5em -25em,  left;  }
+.sidebar__slider__button.ch_gtv          {  background-position: -5em -30em,  left;  }
+.sidebar__slider__button.ch_stv          {  background-position: -5em -35em,  left;  }
+.sidebar__slider__button.ch_ugnayavolna  {  background-position: -5em -40em,  left;  }
+.sidebar__slider__button.ch_nemo         {  background-position: -5em -45em,  left;  }
 
+#ch_1gorodskoy:checked + label.sidebar__slider__button   {  background-position: 0     0,  left;  }
+#ch_3tsyfrovoy:checked + label.sidebar__slider__button   {  background-position: 0  -5em,  left;  }
+#ch_reporter:checked + label.sidebar__slider__button     {  background-position: 0 -10em,  left;  }
+#ch_academia:checked + label.sidebar__slider__button     {  background-position: 0 -15em,  left;  }
+#ch_a1:checked + label.sidebar__slider__button           {  background-position: 0 -20em,  left;  }
+#ch_dumskaya:checked + label.sidebar__slider__button     {  background-position: 0 -25em,  left;  }
+#ch_gtv:checked + label.sidebar__slider__button          {  background-position: 0 -30em,  left;  }
+#ch_stv:checked + label.sidebar__slider__button          {  background-position: 0 -35em,  left;  }
+#ch_ugnayavolna:checked + label.sidebar__slider__button  {  background-position: 0 -40em,  left;  }
+#ch_nemo:checked + label.sidebar__slider__button         {  background-position: 0 -45em,  left;  }
 
 
 
@@ -112,6 +119,8 @@ body {
 
 .footer {
     position: relative;
+    left: 0;
+    bottom: 0;
     height: 10%;
     text-align: center;
     font-size: 1em;
@@ -125,9 +134,14 @@ body {
 }
 .footer__copyright {
     position: absolute;
-    left: 20px;
+    width: 10em;
+    height: 4em;
+    left: 0;
+    text-align: center;
     font-size: 0.5em;
     color: #778899;
+    /*
+    */
 }
 .footer__banner {
     white-space: nowrap;
@@ -135,12 +149,12 @@ body {
 }
 .footer__banner__a {
     display: block;
-    line-height: 30px;
+    line-height: 1em;
     font-size: 1em;
-    padding: 0.3em 0.5em;
+    padding: 0.1em 0.5em;
     color: #778899;
-    border: 3px solid #5566aa;
-    border-radius: 5px;
+    border: 0.1em solid #5566aa;
+    border-radius: 0.2em;
     text-decoration: none;
 }
 .footer__banner__a:hover {
@@ -154,12 +168,11 @@ body {
     font-size: inherit;
     white-space: nowrap;
 }
-.footer__btns__fullscr,
+.footer__btns__menu-off,
 .footer__btns__align,
 .footer__btns__quality {
     display: inline-block;
-    /*margin: 0 10px;*/
-    padding: 0 6% 0 0;
+    padding-right: 6%;
     color: #acf;
     border: none;
     background-color: transparent;
@@ -170,24 +183,55 @@ body {
 button:hover {
     cursor: pointer;
 }
-.footer__btns i {
+.footer__btns__align__i,
+.footer__btns__menu-off__i {
     display: none;
     font-size: 1.5em;
     line-height: 100%;
-    vertical-align: middle;
 }
-i.footer__btns__quality__i {
-    font-family: "Arial";
+.footer__btns__quality__i {
+    display: none;
+    font-family: "Arial", sans-serif;
     font-size: 1.1em;
     line-height: 100%;
 }
-[title="fit vertical"] {
+.footer__btns i.active {
+    display: inline-block;
+    vertical-align: middle;
+}
+.footer__btns__align,
+.footer__btns__menu-off {
+    display: none;
+}
+[title="fit_vertical"] {
     -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
     -ms-transform: rotate(90deg);
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
-.footer__btns i.active {
-    display: inline-block;
+
+
+.menu_on_off {
+    position: absolute;
+    width: 5em;
+    height: 2em;
+    right: 100%;
+    bottom: 0;
+    border-left: 5em solid #48f;
+    border-top: 1em solid transparent;
+    border-bottom: 1em solid transparent;
+}
+.menu_on_off:hover {
+    cursor: pointer;
+}
+.menu_on_off__text {
+    position: absolute;
+    left: -1.25em;
+    top: -2em;
+    height: 1em;
+    line-height: 1em;
+    font-size: 1em;
+    color: #48f;
+    text-shadow: #000 0 0 1px, #000 0 0 3px;  
 }
