@@ -10,40 +10,20 @@
 </head>
 <body>
     
-    <div class="view__box">
-        <video src="" class="view" id="view">
-            <source type="application/x-mpegurl" src="" <i></i>d="source">
+    <div class="box">
+        <video src="" class="video">
+            <source type="application/x-mpegurl" src="" class="source">
             <p>Your browser does not support HTML5 video.</p>
         </video>
-        <div class="video_controls">
-            <p class="video_controls__play">Стоп</p>
-            <p class="video_controls__hq">Низкое качество</p>
-            <div class="video_controls__volume">
-                <p class="video_controls__volume__mute">Выключить</p>
-                <p class="video_controls__volume__up">+</p>
-                <p class="video_controls__volume__down">-</p>
-            </div>
-            <div class="video_controls__scale">
-                <p class="video_controls__scale__sign">Масштаб</p>
-                <p class="video_controls__scale__up">+</p>
-                <p class="video_controls__scale__down">-</p>
-            </div>
-            <p class="video_controls__hide-ch-selector">Спрятать меню</p>
-            <p class="video_controls__fullscr">Развернуть</p>
-        </div>
-    </div>
 
-    <!--<div class="view">
-        <iframe name="view-iframe" height="100%" width="100%" allowmenu-on-offeen="1"
-            src="http://live-tv.od.ua/tv/dumskaya.php?w=640&amp;h=440&amp;a=1&amp;cnee&amp;ff=1"
-            allowtransparency="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" scrolling="no">
-            Выберите канал для просмотра
-        </iframe>
-    </div>-->
+        <!--<div class="view">
+            <iframe name="view-iframe" height="100%" width="100%" allowmenu-on-offeen="1"
+                src="http://live-tv.od.ua/tv/dumskaya.php?w=640&amp;h=440&amp;a=1&amp;cnee&amp;ff=1"
+                allowtransparency="0" frameborder="0" hspace="0" vspace="0" marginheight="0" marginwidth="0" scrolling="no">
+                Выберите канал для просмотра
+            </iframe>
+        </div>-->
  
-            
-    <div class="box-over-view">
-        
         <nav class="sidebar">
             <div class="sidebar__slider">
 
@@ -79,26 +59,42 @@
 
             </div>
         </nav>
-        
+
         <footer class="footer">
-            <p class="footer__copyright">&copy; Potravnyi</p>
-            <p class="footer__banner">
-                <a href="http://live-tv.od.ua" class="footer__banner__a" target="_blank">Live-TV - онлайн ТВ трансляции</a>
+            <div class="footer__left">
+                <button class="footer__left__help">?</button>
+                <button class="footer__left__play">P</button>
+                <button class="footer__left__volume">
+                    <p class="footer__left__volume__mute">V</p>
+                    <p class="footer__left__volume__up">+</p>
+                    <p class="footer__left__volume__down">-</p>
+                </button>
+                <button class="footer__left__quality">
+                    <i title="hight_quality" class="footer__left__quality__i">H</i>
+                    <i title="low_quality" class="footer__left__quality__i active">L</i>
+                </button>
+            </div>
+            
+            <p class="footer__center">
+                <a href="http://live-tv.od.ua" class="footer__center__banner" target="_blank">Live-TV - онлайн ТВ</a>
             </p>
-            <p class="footer__btns">
-                <button class="footer__btns__quality">
-                    <i title="hight_quality" class="footer__btns__quality__i">HQ</i>
-                    <i title="low_quality" class="footer__btns__quality__i active">LQ</i>
+            
+            <div class="footer__right">
+                <button class="footer__right__scale">
+                    <p class="footer__right__scale__sign">S</p>
+                    <p class="footer__right__scale__up">+</p>
+                    <p class="footer__right__scale__down">-</p>
                 </button>
-                <button class="footer__btns__align vertical">
-                    <div class="footer__btns__align__div div1"></div>
-                    <div class="footer__btns__align__div div2"></div>
-                    <div class="footer__btns__align__div div3"></div>
+                <button class="footer__right__align vertical">
+                    <div class="footer__right__align__div div1"></div>
+                    <div class="footer__right__align__div div2"></div>
+                    <div class="footer__right__align__div div3"></div>
                 </button>
-                <button class="footer__btns__menu-off">
-                    <div class="footer__btns__menu-off__div div1"></div><div class="footer__btns__menu-off__div div2"></div>
+                <button class="footer__right__menu-off">
+                    <div class="footer__right__menu-off__div div1"></div><div class="footer__right__menu-off__div div2"></div>
                 </button>
-            </p>
+                <button class="footer__right__fullscr">F</button>
+            </div>
         </footer>
 
     </div>

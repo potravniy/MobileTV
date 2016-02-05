@@ -5,6 +5,16 @@
 	-moz-box-sizing: border-box;
 	box-sizing: border-box;
 }
+button {
+    padding: 0;
+    background-color: transparent;
+    border: none; 
+    cursor: default;
+}
+button:hover {
+    cursor: pointer;
+}
+
 
 /*  Depends on device:  start  */
 
@@ -13,7 +23,7 @@ html {
     font-size: 16px;
     background-color: #000;
 }
-.view {
+.video {
     background-image: url("../img/poster_small.jpg");
 }
 
@@ -21,10 +31,10 @@ html {
 @media only screen and (min-height: 400px)  {   html {font-size: 20px;   }    }
 @media only screen and (min-height: 500px)  {   html {font-size: 25px;   }    }
 @media only screen and (min-height: 625px)  {   html {font-size: 31.25px;}    }
-@media only screen and (min-height: 800px)  {   html {font-size: 40px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1000px) {   html {font-size: 50px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1250px) {   html {font-size: 62.5px; }    .view {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1550px) {   html {font-size: 78px;   }    .view {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 800px)  {   html {font-size: 40px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1000px) {   html {font-size: 50px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1250px) {   html {font-size: 62.5px; }    .video {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 1550px) {   html {font-size: 78px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
 
 body {
     position: relative;
@@ -45,16 +55,16 @@ body {
 /*  Viewbox start  */
 /*  background-image is defined above  */
 
-.view__box {
+.box {
     width: 100%;
     height: 100%;
-    overflow: auto;
+    overflow: hidden;
 }
-.view {
+.video {
     width: 100%;
     height: 100%;
     margin: 0 auto;
-    background-color: transparent;
+    background-color: #000;
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: center;
@@ -67,7 +77,7 @@ body {
 
 /*  Viewbox end  */
 
-.box-over-view {
+.box-over-video {
     /*display: none;*/
     position: absolute;
     width: 100%;
@@ -78,8 +88,11 @@ body {
 	overflow: hidden;
 }
 .sidebar {
-    position: relative;
+    position: absolute;
+    width: 5em;
     height: 90%;
+    right: 0;
+    top: 0;
     overflow: hidden;
     font-size: inherit;
 }
@@ -140,36 +153,158 @@ body {
 
 
 .footer {
-    position: relative;
+    position: absolute;
     left: 0;
     bottom: 0;
+    width: 100%;
     height: 10%;
     text-align: center;
     font-size: 1em;
     line-height: 200%;
     background-color: rgba(0, 0, 0, 0.5);
 }
+
 .footer > * {
     display: inline-block;
     text-shadow: 0 0 3px #000;
     vertical-align: middle;
 }
-.footer__copyright {
+.footer__left,
+.footer__right {
     position: absolute;
-    width: 10em;
-    height: 4em;
-    left: 0;
-    text-align: center;
-    font-size: 0.5em;
-    color: #778899;
-    /*
-    */
+    top: 0;
 }
-.footer__banner {
+.footer__left {
+    left: 0;
+}
+.footer__right {
+    right: 0;
+}
+.footer__left > *,
+.footer__right > * {
+    position: relative;
+    vertical-align: middle;
+    font-size: 2em;
+    height: 1em;
+    text-align: center;
+    color: #acf;
+    padding: 0 0.25em;
+}
+.footer__left > *,
+.footer__right > * {
+    float: left;
+}
+.footer__left__help {
+    margin-left: 0.25em;
+}
+
+.footer__left__quality__i {
+    display: none;
+}
+.footer__left__quality__i.active {
+    display: inline-block;
+}
+.footer__left__volume__up,
+.footer__left__volume__down {
+    position: absolute;
+    left: 0;
+    border: 1px solid #5e5e5e;
+    background-color: rgba(25, 25, 25, 0.7);
+    display: none;
+}
+.footer__left__volume__down {
+    top: -100%;
+}
+.footer__left__volume__up {
+    top: -200%;
+}
+
+
+.footer__right__align {
+    padding: 0;
+    width: 1.15em;
+    height: 1.15em;
+}
+.footer__right__align__div{
+    width: 0.3em;
+    height: 0.3em;
+    margin: 0 auto;
+}
+.footer__right__align__div.div1 {
+    border-top: none;
+    border-right: 0.15em solid transparent;
+    border-bottom: 0.3em solid #acf;
+    border-left: 0.15em solid transparent;
+}
+.footer__right__align__div.div2 {
+    width: 0.1em;
+    background-color: #acf;
+}
+.footer__right__align__div.div3 {
+    border-top: 0.3em solid #acf;
+    border-right: 0.15em solid transparent;
+    border-bottom: none;
+    border-left: 0.15em solid transparent;
+}
+
+.footer__right__menu-off {
+    width: 1em;
+    height: 1em;
+    line-height: 1em;
+    padding: 0;
+    margin: 0 0.1em;
+}
+.footer__right__menu-off__div {
+    display: inline-block;
+    width: 0.5em;
+    vertical-align: middle;
+}
+.footer__right__menu-off__div.div1 {
+    height: 0.12em;
+    margin: 0.19em 0;
+    background-color: #acf;
+}
+.footer__right__menu-off__div.div2 {
+    display: inline-block;
+    height: 0.5em;
+    margin: 0;
+    border-top: 0.25em solid transparent;
+    border-right: none;
+    border-bottom: 0.25em solid transparent;
+    border-left: 0.5em solid #acf;
+}
+
+.footer__right__align.horisontal {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.footer__center {
     white-space: nowrap;
     font-size: inherit;
 }
-.footer__banner__a {
+.footer__center__banner {
     display: block;
     line-height: 1em;
     font-size: 1em;
@@ -179,105 +314,8 @@ body {
     border-radius: 0.2em;
     text-decoration: none;
 }
-.footer__banner__a:hover {
+.footer__center__banner:hover {
     color: #acf;
-}
-.footer__btns {
-    position: absolute;
-    right: 1%;
-    color: #acf;
-    text-align: center;
-    font-size: inherit;
-    white-space: nowrap;
-}
-.footer__btns__menu-off,
-.footer__btns__align,
-.footer__btns__quality {
-    display: inline-block;
-    color: #acf;
-    border: none;
-    background-color: transparent;
-    vertical-align: middle;
-    text-shadow: 0 0 3px #000;
-    font-size: inherit;
-}
-button:hover {
-    cursor: pointer;
-}
-.footer__btns__align {
-    width: 1.2em;
-    height: 1.2em;
-}
-.footer__btns__align__div{
-    width: 0.4em;
-    height: 0.4em;
-    margin: 0 auto;
-}
-.footer__btns__align__div.div1 {
-    border-top: none;
-    border-right: 0.2em solid transparent;
-    border-bottom: 0.4em solid #acf;
-    border-left: 0.2em solid transparent;
-}
-.footer__btns__align__div.div2 {
-    width: 0.13em;
-    background-color: #acf;
-}
-.footer__btns__align__div.div3 {
-    border-top: 0.4em solid #acf;
-    border-right: 0.2em solid transparent;
-    border-bottom: none;
-    border-left: 0.2em solid transparent;
-}
-
-.footer__btns__menu-off {
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    padding: 0 1.6em 0 0.5em;
-}
-.footer__btns__menu-off__div {
-    display: inline-block;
-    width: 0.5em;
-    vertical-align: middle;
-}
-.footer__btns__menu-off__div.div1 {
-    height: 0.12em;
-    margin: 0.19em 0;
-    background-color: #acf;
-}
-.footer__btns__menu-off__div.div2 {
-    display: inline-block;
-    height: 0.5em;
-    margin: 0;
-    border-top: 0.25em solid transparent;
-    border-right: none;
-    border-bottom: 0.25em solid transparent;
-    border-left: 0.5em solid #acf;
-}
-.footer__btns__quality {
-    padding-right: 0.5em;
-}
-.footer__btns__quality__i {
-    display: none;
-    font-family: "Arial", sans-serif;
-    font-size: 1.1em;
-    line-height: 100%;
-}
-.footer__btns__quality__i.active {
-    display: inline-block;
-    vertical-align: middle;
-}
-.footer__btns__align,
-.footer__btns__menu-off {
-    display: none;
-}
-.footer__btns__align.horisontal {
-    -webkit-transform: rotate(90deg);
-    -moz-transform: rotate(90deg);
-    -ms-transform: rotate(90deg);
-    -o-transform: rotate(90deg);
-    transform: rotate(90deg);
 }
 
 

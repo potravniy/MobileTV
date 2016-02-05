@@ -4,8 +4,8 @@ var $video = window.viewerState.$video
 var $source = window.viewerState.$source
 var $slider = window.viewerState.$slider
 var active$input = window.viewerState.active$input
-var $btnMenuOnOf = document.querySelector('.footer__btns__menu-off')
-var $btnAlign = document.querySelector('.footer__btns__align')
+var $btnMenuOnOf = document.querySelector('.footer__right__menu-off')
+var $btnAlign = document.querySelector('.footer__right__align')
 var link = ''
 var $btns = {
     "ch_1gorodskoy":  document.querySelector("#ch_1gorodskoy"),

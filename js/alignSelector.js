@@ -1,6 +1,6 @@
 "use strict"
 
-var $btn = document.querySelector(".footer__btns__align")
+var $btn = document.querySelector(".footer__right__align")
 var $video = window.viewerState.$video 
 
 if($btn.classList.contains("vertical")) {
