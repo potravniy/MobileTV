@@ -4,15 +4,16 @@
     <title>Live-TV</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" type="text/css" href="./css/reset.css">
     <link rel="stylesheet" type="text/css" href="./css/main.css">
-    <script type="text/javascript" src="./js/bundle.js"></script>
 </head>
 <body>
     
     <div class="view__box">
-        <video src="" class="view" id="view" controls>
+        <video src="" class="view" id="view">
             <source type="application/x-mpegurl" src="" id="source">
+            <p>Your browser does not support HTML5 video.</p>
         </video>
     </div>
 
@@ -89,6 +90,8 @@
     <div class="menu_on_off">
         <p class="menu_on_off__text"></p>
     </div>
+
+    <script type="text/javascript" src="./js/bundle.js"></script>
     
 </body>
 </html>

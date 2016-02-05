@@ -14,4 +14,7 @@ window.onload = function () {
   require('./qualitySelector.js')
   require('./alignSelector.js')
   require('./hideShowMenu.js')
+  require('./fullscreen.js')
+  require('./videoErrorListener')
+  require('./iPadCheckScreenSize.js')
 }
