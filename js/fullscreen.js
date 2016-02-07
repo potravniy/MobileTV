@@ -2,72 +2,48 @@
 
 var $btnFullScr = window.viewerState.$btnFullScr
 var $box = window.viewerState.$box
-//test()
-function test() {
-    if ($box.requestFullscreen) {
-      alert('requestFullscreen()')
-    } else if ($box.requestFullScreen) {
-      alert('requestFullScreen()')
-    } else if ($box.webkitRequestFullscreen) {
-      alert('webkitRequestFullscreen()')
-    } else if ($box.webkitRequestFullScreen) {
-      alert('webkitRequestFullScreen()')
-    } else if ($box.mozRequestFullScreen) {
-      alert('mozRequestFullScreen()')
-    } else if ($box.mozRequestFullscreen) {
-      alert('mozRequestFullscreen()')
-    } else if ($box.msRequestFullscreen) {
-      alert('msRequestFullscreen()')
-    } else if ($box.webkitSupportsFullscreen) {
-      alert('Safari!!! webkitSupportsFullscreen()')
-    }
-     else alert('No fullscreen')
+
+if ( window.viewerState.isFullScreenAllowed ) {
+  $btnFullScr.addEventListener('click', function () {
+      if(window.viewerState.ask$boxInFullScreen()) getOffFullscreen()
+      else goFullScreen()
+  })
+  document.addEventListener('fullscreenchange', modifyMenuLook)
+  document.addEventListener('webkitfullscreenchange', modifyMenuLook)
+  document.addEventListener('mozfullscreenchange', modifyMenuLook)
+  document.addEventListener('MSFullscreenChange', modifyMenuLook)
+} else {
+//    $btnFullScr.style.display = 'none'
 }
 
-
-if (
-  $box.requestFullscreen ||
-  $box.requestFullScreen ||
-  $box.webkitRequestFullscreen ||
-  $box.webkitRequestFullScreen ||
-  $box.mozRequestFullScreen ||
-  $box.mozRequestFullscreen ||
-  $box.msRequestFullscreen
-) {
-  $btnFullScr.addEventListener('click', function () {
+function goFullScreen() {
     if ($box.requestFullscreen) {
-      $box.requestFullscreen()
-    } else if ($box.requestFullScreen) {
-      $box.requestFullScreen()
-    } else if ($box.webkitRequestFullscreen) {
-      $box.webkitRequestFullscreen()
-    } else if ($box.webkitRequestFullScreen) {
-      $box.webkitRequestFullScreen()
+        $box.requestFullscreen()
     } else if ($box.mozRequestFullScreen) {
-      $box.mozRequestFullScreen()
-    } else if ($box.mozRequestFullscreen) {
-      $box.mozRequestFullscreen()
+        $box.mozRequestFullScreen()
+    } else if ($box.webkitRequestFullscreen) {
+        $box.webkitRequestFullscreen()
     } else if ($box.msRequestFullscreen) {
-      $box.msRequestFullscreen()
-    } else console.log('No fullscreen available')
-  })
-}       //else $btn.style.display = 'none'
-
-
-document.addEventListener('fullscreenchange', hideShowControls)
-document.addEventListener('webkitfullscreenchange', hideShowControls)
-document.addEventListener('mozfullscreenchange', hideShowControls)
-document.addEventListener('MSFullscreenChange', hideShowControls)
-
-function hideShowControls () {
-  if (
-    document.fullscreenElement === $box ||
-    document.webkitFullscreenElement === $box ||
-    document.mozFullScreenElement === $box ||
-    document.msFullscreenElement === $box
-  ) {
-    alert('Fullscreen on')
+        $box.msRequestFullscreen()
+    }
+}
+function getOffFullscreen() {
+  if(document.exitFullscreen) {
+    document.exitFullscreen();
+  } else if(document.mozCancelFullScreen) {
+    document.mozCancelFullScreen();
+  } else if(document.webkitExitFullscreen) {
+    document.webkitExitFullscreen();
+  }else if (document.msExitFullscreen) {
+	document.msExitFullscreen();
+  }
+}
+function modifyMenuLook () {
+  if (window.viewerState.ask$boxInFullScreen()) {
+    console.log('Modify btnFullScr look!!!')
+    console.log('Get Menu off!!!')
   } else {
-    alert('Fullscreen off')
+    console.log('Modify btnFullScr look!!!')
+    console.log('Get Menu back!!!')
   }
 }

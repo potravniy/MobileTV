@@ -1,124 +1,46 @@
 'use strict'
 
-var $video = window.viewerState.$video
-var $slider = window.viewerState.$slider
+var $box = window.viewerState.$box
+var $sideMenuBox = window.viewerState.$sideMenuBox
 var $footer = window.viewerState.$footer
-var $overViewBox = document.querySelector('.box-over-video')
-var $btnMenuOff = document.querySelector('.footer__right__menu-off')
-var $arrowMenuOnOff = document.querySelector('.menu_on_off')
-var $arrowText = document.querySelector('.menu_on_off__text')
-var startTime = undefined
-var duration = 1000 //  ms
-var duration_fast = 500 //  ms
+var $btnMenuOff = window.viewerState.$btnMenuOff
+var ask$boxInFullScreen = window.viewerState.ask$boxInFullScreen
 
-$btnMenuOff.addEventListener('click', function () {
-    requestAnimationFrame(hideMenuHor)
-})
-$arrowMenuOnOff.addEventListener('click', function () {
-    $arrowMenuOnOff.style.borderTopColor =  '#48f';
-    $arrowText.innerText = ''
-    requestAnimationFrame(showMenuVert)
-})
+//  If -->     $btnMenuOff   $footer   FullScreen   EventSource   EventType/state   EventAction      Handler                Additionaly      
+//  States:                                                                                                                 
+//          1.    shown       shown        off      $btnMenuOff     click/none      hide both        $btnHadler             
+//          2.    hidden      hidden       off      $box            click/none      show both        $boxHandler            
+//          3.    hidden      hidden       on       $box            click/none      show $footer     $boxHandler            show $footer for 5sec
+//                                                                                                                          click any footer button
+//                                                                                                                          resets 5sec countdown from beginning
+//          5.    hidden      shown        on       $box            click/none      hide $footer     $boxHandler            
+//          6.    shown       shown        off      $btnMenuOff     click/none      hide both        $btnHadler             
+//          7.    hidden      hidden       off      FullScreen      event/on        show both        fullScreenHandler      
+//          8.    shown       shown        on       FullScreen      event/off       hide both        fullScreenHandler      
+//          9.    hidden      hidden       on       FullScreen      event/off       show both        fullScreenHandler      
+//         10.    shown       shown        off      FullScreen      event/on        hide both        fullScreenHandler      
 
-function hideMenuHor (timeStamp) {
-  if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration
-  if (progress <= 1) {
-      $arrowMenuOnOff.style.right = 100 - 100 * progress + '%'
-      $footer.style.left = 100 * progress + '%'
-      requestAnimationFrame(hideMenuHor)
-  } else {
-      $arrowMenuOnOff.style.right = 0
-      $footer.style.left = 100 + '%'
-      startTime = undefined
-      turnArrowUp()
-      requestAnimationFrame(hideMenuVert)
-  }
-}
-function turnArrowUp() {
-    $arrowMenuOnOff.style.borderTop = 'none'
-    $arrowMenuOnOff.style.borderRight = '2.5em solid transparent'
-    $arrowMenuOnOff.style.borderBottom = '2em solid #48f'
-    $arrowMenuOnOff.style.borderLeft = '2.5em solid transparent'
-}
+$btnMenuOff.addEventListener('click', menuHide)
+$box.addEventListener('click', menuShow)
+document.addEventListener('fullscreenchange', modifyMenuHideShowOption)
+document.addEventListener('webkitfullscreenchange', modifyMenuHideShowOption)
+document.addEventListener('mozfullscreenchange', modifyMenuHideShowOption)
+document.addEventListener('MSFullscreenChange', modifyMenuHideShowOption)
 
-function hideMenuVert(timeStamp) {
-  if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration
-  if (progress <= 1) {
-      $arrowMenuOnOff.style.bottom = 100 * progress + '%'
-      $overViewBox.style.top = -100 * progress + '%'
-      requestAnimationFrame(hideMenuVert)
-  } else {
-      $arrowMenuOnOff.style.bottom = 100 + '%'
-      $overViewBox.style.top = -90 + '%'
-      startTime = undefined
-      turnArrowDonw()
-      requestAnimationFrame(dropDown)
-  }
+function menuHide() {
+    $sideMenuBox.hide()
+    $footer.hide()
+    $btnMenuOff.removeEventListener('click', menuHide)
 }
-function turnArrowDonw() {
-    $arrowMenuOnOff.style.borderTop = '2em solid #48f'
-    $arrowMenuOnOff.style.borderRight = '2.5em solid transparent'
-    $arrowMenuOnOff.style.borderBottom = 'none'
-    $arrowMenuOnOff.style.borderLeft = '2.5em solid transparent'
+function menuShow(e) {
+    var srcElement = event.srcElement || event.target
+    if(srcElement === $box) {
+        $sideMenuBox.show()
+        $footer.show()
+    }
 }
-function dropDown(timeStamp) {
-  if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration_fast
-  if (progress <= 1) {
-      $arrowMenuOnOff.style.bottom = 100 - 10 * progress + '%'
-      requestAnimationFrame(dropDown)
-  } else {
-      $arrowMenuOnOff.style.bottom = 90 + '%'
-      startTime = undefined
-      setTimeout(function() {
-          $arrowText.innerText = 'menu'
-          $arrowMenuOnOff.style.borderTopColor =  'rgba(68, 136, 255, 0.3)';
-      }, 300);
-  }
-}
-
-
-
-function showMenuVert (timeStamp) {
-  if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration
-  if (progress <= 1) {
-      $arrowMenuOnOff.style.bottom = 90 - 90 * progress + '%'
-      $overViewBox.style.top = -90 + 90 * progress + '%'
-    requestAnimationFrame(showMenuVert)
-  } else {
-      $arrowMenuOnOff.style.bottom = 0
-      $overViewBox.style.top = 0
-      startTime = undefined
-      turnArrowLeft()
-      requestAnimationFrame(showMenuHor)
-  }
-}
-function turnArrowLeft() {
-    $arrowMenuOnOff.style.borderTop = '1em solid transparent'
-    $arrowMenuOnOff.style.borderRight = '5em solid #48f'
-    $arrowMenuOnOff.style.borderBottom = '1em solid transparent'
-    $arrowMenuOnOff.style.borderLeft = 'none'
-}
-function showMenuHor (timeStamp) {
-  if (!startTime) startTime = timeStamp
-  var progress = (timeStamp - startTime) / duration
-  if (progress <= 1) {
-      $arrowMenuOnOff.style.right = 100 * progress + '%'
-      $footer.style.left = 100 - 100 * progress + '%'
-      requestAnimationFrame(showMenuHor)
-  } else {
-      $arrowMenuOnOff.style.right = 100 + '%'
-      $footer.style.left = 0
-      startTime = undefined
-      turnArrowToInit()
-  }
-}
-function turnArrowToInit() {
-    $arrowMenuOnOff.style.borderTop = ''
-    $arrowMenuOnOff.style.borderRight = ''
-    $arrowMenuOnOff.style.borderBottom = ''
-    $arrowMenuOnOff.style.borderLeft = ''
+function modifyMenuHideShowOption() {
+    if(ask$boxInFullScreen()){
+        
+    }
 }

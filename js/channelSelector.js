@@ -42,7 +42,7 @@ $btns.ch_ugnayavolna.setAttribute( 'data-link-hq', "http://77.88.196.133:8081/wa
 $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/nemo/mor-abr/playlist.m3u8"          )
 
 $slider.addEventListener('click', function(event){
-    var srcElement = event.srcElement ? event.srcElement : event.target
+    var srcElement = event.srcElement || event.target
     if(srcElement.tagName === 'INPUT'){
         if(active$input === srcElement) {
             active$input.checked = false
