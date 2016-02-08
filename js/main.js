@@ -39,7 +39,7 @@ window.onload = function () {
     window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')                 //  function -> boolean
   
     //  Set hide() and show() methods for $sideMenuBox and $footer
-    //  basing on requestAnimationFrame or setInterval()
+    //  basing on requestAnimationFrame or setInterval
   if(require('./askAnimationFrameAllowed.js')) {
     require('./setMenuAndFooterMethodsWithFrame.js')
   } else {
@@ -52,5 +52,6 @@ window.onload = function () {
   require('./hideShowMenu.js')
   require('./fullscreen.js')
   require('./videoErrorListener')
+  require('./buttonHelp.js')
 
 }
