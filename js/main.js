@@ -24,22 +24,23 @@ window.onload = function () {
     '$btnAlign':    document.querySelector('.footer__right__align'),
     '$btnMenuOff':  document.querySelector('.footer__right__menu-off'),
     '$btnFullScr':  document.querySelector('.footer__right__fullscr'),
-    '$btnMenuOn':   document.querySelector('.menu_on_off'),                 //  ?
-    'isVideoWorking':                   require('./askVideoWorking.js'),            //  boolean
-    'isRequestAnimationFrameAllowed':   require('./askAnimationAllowed.js'),        //  boolean
-    'isFullScreenAllowed':              require('./askFullScreen.js'),              //  boolean
-    'is_iPad_iPhone':                   require('./ask_iPad_iPhone.js'),            //  boolean
-    'is_iPad_iPhone_inFullScreen':      require('./ask_iPad_iPhone_FullScreen.js'), //  boolean
-    'ask$boxInFullScreen':              require('./ask$boxInFullScreen.js'),        //  function -> boolean
     'active$input': null,
     'highQuality': false,
     'alignVertical': false,
     'is$sideMenuBoxHidden': false,
     'is$footerHidden': false,
+    'duration': 500
   };
+
+    window.viewerState.isVideoWorking = require('./askVideoWorking.js')                          //  boolean
+    window.viewerState.isFullScreenAllowed = require('./askFullScreen.js')                       //  boolean
+    window.viewerState.is_iPad_iPhone = require('./ask_iPad_iPhone.js')                          //  boolean
+    window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')  //  boolean
+    window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')                 //  function -> boolean
   
     //  Set hide() and show() methods for $sideMenuBox and $footer
-  if(window.viewerState.isRequestAnimationFrameAllowed) {
+    //  basing on requestAnimationFrame or setInterval()
+  if(require('./askAnimationFrameAllowed.js')) {
     require('./setMenuAndFooterMethodsWithFrame.js')
   } else {
     require('./setMenuAndFooterMethodsWithInterval.js')

@@ -41,10 +41,10 @@ $btns.ch_stv.setAttribute(         'data-link-hq', "http://77.88.196.133:8081/st
 $btns.ch_ugnayavolna.setAttribute( 'data-link-hq', "http://77.88.196.133:8081/wave/wave-abr/playlist.m3u8"         )
 $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/nemo/mor-abr/playlist.m3u8"          )
 
-$slider.addEventListener('click', function(event){
-    var srcElement = event.srcElement || event.target
-    if(srcElement.tagName === 'INPUT'){
-        if(active$input === srcElement) {
+$slider.addEventListener('click', function(e){
+    e.stopPropagation()
+    if(e.target.tagName === 'INPUT'){
+        if(active$input === e.target) {
             active$input.checked = false
             active$input = null
             $video.style.backgroundSize = ""
@@ -53,9 +53,9 @@ $slider.addEventListener('click', function(event){
             $btnMenuOnOf.style.display = 'none'
             $btnAlign.style.display = 'none'
         } else {
-            active$input = srcElement
-            if(window.viewerState.highQuality)  link = srcElement.getAttribute('data-link-hq')
-            else link = srcElement.getAttribute('data-link-lq')
+            active$input = e.target
+            if(window.viewerState.highQuality)  link = e.target.getAttribute('data-link-hq')
+            else link = e.target.getAttribute('data-link-lq')
             $video.setAttribute('src', link)
             $source.setAttribute('src', link)
             $video.style.backgroundSize = "0 0"

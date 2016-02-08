@@ -1,6 +1,6 @@
 'use strict'
 
-var $btn = document.querySelector('.footer__left__quality')
+var $btn = window.viewerState.$btnQuality
 var $signHQ = document.querySelector('[title = hight_quality]')
 var $signLQ = document.querySelector('[title = low_quality]')
 

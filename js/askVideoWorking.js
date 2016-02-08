@@ -1,13 +1,11 @@
 'use strict'
 
 module.exports = (function () {
-    var working
     if(typeof window.viewerState.$video.play === 'function' ) {
-        working = true
-        console.log('video ok maybe!!!')
+        console.log('video ok needs to be confirmed')
+        return true
     } else {
-        working = false
         console.log('no video')
+        return false
     }
-    return working
 })()

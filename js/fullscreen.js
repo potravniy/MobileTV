@@ -8,12 +8,6 @@ if ( window.viewerState.isFullScreenAllowed ) {
       if(window.viewerState.ask$boxInFullScreen()) getOffFullscreen()
       else goFullScreen()
   })
-  document.addEventListener('fullscreenchange', modifyMenuLook)
-  document.addEventListener('webkitfullscreenchange', modifyMenuLook)
-  document.addEventListener('mozfullscreenchange', modifyMenuLook)
-  document.addEventListener('MSFullscreenChange', modifyMenuLook)
-} else {
-//    $btnFullScr.style.display = 'none'
 }
 
 function goFullScreen() {
@@ -36,14 +30,5 @@ function getOffFullscreen() {
     document.webkitExitFullscreen();
   }else if (document.msExitFullscreen) {
 	document.msExitFullscreen();
-  }
-}
-function modifyMenuLook () {
-  if (window.viewerState.ask$boxInFullScreen()) {
-    console.log('Modify btnFullScr look!!!')
-    console.log('Get Menu off!!!')
-  } else {
-    console.log('Modify btnFullScr look!!!')
-    console.log('Get Menu back!!!')
   }
 }

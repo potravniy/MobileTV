@@ -2,10 +2,9 @@
 
 var $sideMenuBox = window.viewerState.$sideMenuBox
 var $footer = window.viewerState.$footer
-var duration = 500 //  ms
+var duration = window.viewerState.duration
 
 window.viewerState.$sideMenuBox.hide = function () {
-    if(!window.viewerState.is$sideMenuBoxHidden) return
     var startTime = undefined
     requestAnimationFrame(hide)
     function hide(timeStamp) {
@@ -16,7 +15,7 @@ window.viewerState.$sideMenuBox.hide = function () {
             requestAnimationFrame(hide)
         } else {
             $sideMenuBox.object.style.opacity = 0
-            $sideMenuBox.object.style.right = '5em'
+            $sideMenuBox.object.style.right = '-5em'
             startTime = undefined
             window.viewerState.is$sideMenuBoxHidden = true
         }
@@ -24,8 +23,8 @@ window.viewerState.$sideMenuBox.hide = function () {
 }
 
 window.viewerState.$sideMenuBox.show = function () {
-    if(window.viewerState.is$sideMenuBoxHidden) return
     var startTime = undefined
+    $sideMenuBox.object.style.right = ''
     requestAnimationFrame(show)
     function show(timeStamp) {
         if (!startTime) startTime = timeStamp
@@ -35,7 +34,6 @@ window.viewerState.$sideMenuBox.show = function () {
             requestAnimationFrame(show)
         } else {
             $sideMenuBox.object.style.opacity = 1
-            $sideMenuBox.object.style.right = ''
             startTime = undefined
             window.viewerState.is$sideMenuBoxHidden = false
         }
@@ -43,7 +41,6 @@ window.viewerState.$sideMenuBox.show = function () {
 }
 
 window.viewerState.$footer.hide = function () {
-    if(!window.viewerState.is$footerHidden) return
     var startTime = undefined
     requestAnimationFrame(hide)
     function hide(timeStamp) {
@@ -62,8 +59,8 @@ window.viewerState.$footer.hide = function () {
 }
 
 window.viewerState.$footer.show = function () {
-    if(window.viewerState.is$footerHidden) return
     var startTime = undefined
+    $footer.object.style.bottom = ''
     requestAnimationFrame(show)
     function show(timeStamp) {
         if (!startTime) startTime = timeStamp
@@ -73,7 +70,6 @@ window.viewerState.$footer.show = function () {
             requestAnimationFrame(show)
         } else {
             $footer.object.style.opacity = 1
-            $footer.object.style.bottom = ''
             startTime = undefined
             window.viewerState.is$footerHidden = false
         }
