@@ -166,6 +166,7 @@ body {
     font-size: 1em;
     line-height: 200%;
     background-color: rgba(0, 0, 0, 0.5);
+    white-space: nowrap;
 }
 
 .footer > * {
@@ -305,6 +306,20 @@ body {
 }
 .footer__center__banner:hover {
     color: #acf;
+}
+.footer.ctrl {
+    position: relative;
+    width: 19em;
+    bottom: 10%;
+    margin: 0 auto;
+    border-radius: 1em;
+}
+.footer.ctrl .footer__center {
+    display: none;
+}
+.footer.ctrl .footer__left,
+.footer.ctrl .footer__right {
+    position: relative;
 }
 
 .help {

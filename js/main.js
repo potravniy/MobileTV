@@ -32,20 +32,13 @@ window.onload = function () {
     'duration': 500
   };
 
-    window.viewerState.isVideoWorking = require('./askVideoWorking.js')                          //  boolean
-    window.viewerState.isFullScreenAllowed = require('./askFullScreen.js')                       //  boolean
-    window.viewerState.is_iPad_iPhone = require('./ask_iPad_iPhone.js')                          //  boolean
-    window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')  //  boolean
-    window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')                 //  function -> boolean
+  window.viewerState.isVideoWorking = require('./askVideoWorking.js')                          //  boolean
+  window.viewerState.isFullScreenAllowed = require('./askFullScreen.js')                       //  boolean
+  window.viewerState.is_iPad_iPhone = require('./ask_iPad_iPhone.js')                          //  boolean
+  window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')  //  boolean
+  window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')                 //  function -> boolean
   
-    //  Set hide() and show() methods for $sideMenuBox and $footer
-    //  basing on requestAnimationFrame or setInterval
-  if(require('./askAnimationFrameAllowed.js')) {
-    require('./setMenuAndFooterMethodsWithFrame.js')
-  } else {
-    require('./setMenuAndFooterMethodsWithInterval.js')
-  }
-
+  require('./setMenuAndFooterMethods.js')
   require('./channelSelector.js')
   require('./qualitySelector.js')
   require('./alignSelector.js')

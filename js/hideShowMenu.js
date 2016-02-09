@@ -38,7 +38,7 @@ function btnHandler(e) {
     } else if(window.viewerState.is$sideMenuBoxHidden) {
         $sideMenuBox.show()
         if(id){
-            transformFooter('back')
+            $footer.object.classList.remove('ctrl')
             clearTimeout(id)
             $box.addEventListener('click', boxHandler)
         }
@@ -78,32 +78,19 @@ function fullScreenHandler() {
         if(window.viewerState.is$sideMenuBoxHidden) $sideMenuBox.show()
         if(window.viewerState.is$footerHidden) $footer.show()
         if(id){
-            transformFooter('back')
+            $footer.object.classList.remove('ctrl')
             clearTimeout(id)
             $box.addEventListener('click', boxHandler)
         }
     }
 }
 function showControls() {
-    transformFooter('toControls')
+    $footer.object.classList.add('ctrl')
     $footer.show()
 }
 function hideControls() {
     $footer.hide()
     setTimeout(function(){
-        transformFooter('back')
+        $footer.object.classList.remove('ctrl')
     }, window.viewerState.duration)
-}
-function transformFooter(where) {
-    if(where === 'toControls'){
-        $footer.object.style.width = '19em'
-        $footer.object.style.left = (window.innerWidth - $footer.object.offsetWidth)/2 + 'px'
-        $footer.object.style.borderRadius = '2em'
-        $footer__center.style.display = 'none'
-    } else if(where === 'back'){
-        $footer.object.style.width = ''
-        $footer.object.style.left = ''
-        $footer.object.style.borderRadius = ''
-        $footer__center.style.display = ''
-    }
 }
