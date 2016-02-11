@@ -3,9 +3,7 @@
 var $video = window.viewerState.$video
 var $source = window.viewerState.$source
 var $slider = window.viewerState.$slider
-var active$input = window.viewerState.active$input
 var $btnMenuOnOf = document.querySelector('.footer__right__menu-off')
-var $btnAlign = document.querySelector('.footer__right__align')
 var link = ''
 var $btns = {
     "ch_1gorodskoy":  document.querySelector("#ch_1gorodskoy"),
@@ -44,16 +42,15 @@ $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/ne
 $slider.addEventListener('click', function(e){
     e.stopPropagation()
     if(e.target.tagName === 'INPUT'){
-        if(active$input === e.target) {
-            active$input.checked = false
-            active$input = null
+        if(window.viewerState.active$input === e.target) {
+            window.viewerState.active$input.checked = false
+            window.viewerState.active$input = null
             $video.style.backgroundSize = ""
             $video.setAttribute('src', '')
             $source.setAttribute('src', '')
             $btnMenuOnOf.style.display = 'none'
-            $btnAlign.style.display = 'none'
         } else {
-            active$input = e.target
+            window.viewerState.active$input = e.target
             if(window.viewerState.highQuality)  link = e.target.getAttribute('data-link-hq')
             else link = e.target.getAttribute('data-link-lq')
             $video.setAttribute('src', link)
@@ -62,7 +59,7 @@ $slider.addEventListener('click', function(e){
             if($video.play) $video.play();
             else alert ('video cannot play')
             $btnMenuOnOf.style.display = 'inline-block'
-            $btnAlign.style.display = 'inline-block'
+            window.viewerState.timerForErrorPage = Date.now()
         }
     }
 })

@@ -7,7 +7,7 @@ var $footer = window.viewerState.$footer
 var $footer__center = document.querySelector('.footer__center') 
 var $btnMenuOff = window.viewerState.$btnMenuOff
 var ask$boxInFullScreen = window.viewerState.ask$boxInFullScreen
-var durationCtrl = 5000  //  ms
+var durationFooterAsCtrl = window.viewerState.durationFooterAsCtrl
 var id = undefined
 
 //  Hides/showes $sideMenuBox and $footer
@@ -51,7 +51,7 @@ function footerHandler(e) {
         id = setTimeout( function(){
             hideControls()
             $box.addEventListener('click', boxHandler)
-        } , durationCtrl)
+        } , durationFooterAsCtrl)
     }
 }
 function boxHandler(e) {
@@ -63,7 +63,7 @@ function boxHandler(e) {
             id = setTimeout( function(){
                 hideControls()
                 $box.addEventListener('click', boxHandler)
-            } , durationCtrl)
+            } , durationFooterAsCtrl)
         }
     } else {
         if(window.viewerState.is$sideMenuBoxHidden) $sideMenuBox.show()
@@ -92,5 +92,5 @@ function hideControls() {
     $footer.hide()
     setTimeout(function(){
         $footer.object.classList.remove('ctrl')
-    }, window.viewerState.duration)
+    }, window.viewerState.durationShowHideMenu)
 }

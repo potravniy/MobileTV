@@ -1,12 +1,21 @@
 'use strict'
 
-var $btnFullScr = window.viewerState.$btnFullScr
 var $box = window.viewerState.$box
+var $btnFullScr = window.viewerState.$btnFullScr
+var $svgFullScrOn = document.querySelector('.fullscr_on')
+var $svgFullScrOff = document.querySelector('.fullscr_off')
 
 if ( window.viewerState.isFullScreenAllowed ) {
   $btnFullScr.addEventListener('click', function () {
-      if(window.viewerState.ask$boxInFullScreen()) getOffFullscreen()
-      else goFullScreen()
+      if(window.viewerState.ask$boxInFullScreen()) {
+          getOffFullscreen()
+          $svgFullScrOn.classList.add("active")
+          $svgFullScrOff.classList.remove("active")
+      } else {
+          goFullScreen()
+          $svgFullScrOff.classList.add("active")
+          $svgFullScrOn.classList.remove("active")
+      }
   })
 }
 

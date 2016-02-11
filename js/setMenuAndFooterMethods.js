@@ -81,7 +81,7 @@ window.viewerState.$footer.hide = function () {
             requestAnimationFrame(hide)
         } else {
             $footer.object.style.opacity = 0
-            $footer.object.style.bottom = '-10%'
+            $footer.object.style.bottom = '-14%'
             startTime = undefined
             window.viewerState.is$footerHidden = true
         }

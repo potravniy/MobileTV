@@ -62,16 +62,37 @@
 
         <footer class="footer">
             <div class="footer__left">
-                <button class="footer__left__help">?</button>
-                <button class="footer__left__play">P</button>
+                <button class="footer__left__help">
+                    <svg class="active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"/>
+                    </svg>
+                </button>
+                <button class="footer__left__play">
+                    <svg class="play" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M8 5v14l11-7z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                    <svg class="pause" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                </button>
                 <button class="footer__left__volume">
-                    <p class="footer__left__volume__mute">V</p>
-                    <p class="footer__left__volume__up">+</p>
-                    <p class="footer__left__volume__down">-</p>
+                    <svg class="volume_off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
+                    <svg class="volume_on active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/>
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                    </svg>
                 </button>
                 <button class="footer__left__quality">
-                    <i title="hight_quality" class="footer__left__quality__i">H</i>
-                    <i title="low_quality" class="footer__left__quality__i active">L</i>
+                    <svg class="active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm-8 11H9.5v-2h-2v2H6V9h1.5v2.5h2V9H11v6zm7-1c0 .55-.45 1-1 1h-.75v1.5h-1.5V15H14c-.55 0-1-.45-1-1v-4c0-.55.45-1 1-1h3c.55 0 1 .45 1 1v4zm-3.5-.5h2v-3h-2v3z"/>
+                    </svg>
                 </button>
             </div>
             
@@ -80,27 +101,58 @@
             </p>
             
             <div class="footer__right">
-                <button class="footer__right__scale">
-                    <p class="footer__right__scale__sign">S</p>
-                    <p class="footer__right__scale__up">+</p>
-                    <p class="footer__right__scale__down">-</p>
-                </button>
-                <button class="footer__right__align vertical">
-                    <div class="footer__right__align__div div1"></div>
-                    <div class="footer__right__align__div div2"></div>
-                    <div class="footer__right__align__div div3"></div>
-                </button>
+                <div class="footer__right__scale-box">
+                    <button class="footer__right__scale_btn">
+                        <svg class="scale_btn_svg active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <defs>
+                                <path d="M0 0h24v24H0z" id="a"/>
+                            </defs>
+                            <clipPath id="b">
+                                <use overflow="visible" xlink:href="#a"/>
+                            </clipPath>
+                            <path clip-path="url(#b)" d="M15 3l2.3 2.3-2.89 2.87 1.42 1.42L18.7 6.7 21 9V3zM3 9l2.3-2.3 2.87 2.89 1.42-1.42L6.7 5.3 9 3H3zm6 12l-2.3-2.3 2.89-2.87-1.42-1.42L5.3 17.3 3 15v6zm12-6l-2.3 2.3-2.87-2.89-1.42 1.42 2.89 2.87L15 21h6z"/>
+                            <path clip-path="url(#b)" d="M0 0h24v24H0z" fill="none"/>
+                        </svg>
+                    </button>
+                    <div class="footer__right__scale_subbtns">
+                        <button class="subbtn__up">
+                            <svg class='active' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M12 10h-2v2H9v-2H7V9h2V7h1v2h2v1z"/>
+                            </svg>                            
+                        </button>
+                        <button class="subbtn__down">
+                            <svg class='active' viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 0h24v24H0V0z" fill="none"/>
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14zM7 9h5v1H7z"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
                 <button class="footer__right__menu-off">
-                    <div class="footer__right__menu-off__div div1"></div><div class="footer__right__menu-off__div div2"></div>
+                    <svg class="active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M20 5.41L18.59 4 7 15.59V9H5v10h10v-2H8.41z"/>
+                    </svg>
                 </button>
-                <button class="footer__right__fullscr">F</button>
+                <button class="footer__right__fullscr">
+                    <svg class="fullscr_on active" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                    </svg>
+                    <svg class="fullscr_off" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0 0h24v24H0z" fill="none"/>
+                        <path d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                    </svg>
+                </button>
             </div>
         </footer>
 
     </div>
     
     <script type="text/javascript" src="./js/bundle.js"></script>
-    
+
     <div class="help">
         <h3 class="help__title">Подсказка</h3>
         <div class="help__side_menu">Панель выбора каналов. Прокрутите и щелкните желаемый канал.</div>

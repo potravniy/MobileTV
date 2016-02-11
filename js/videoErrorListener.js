@@ -17,6 +17,7 @@ $video.addEventListener('error', failed)
        alert('The video playback was aborted due to a corruption problem or because the video used features your browser did not support.');
        break;
      case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+       console.log('The video could not be loaded  ' + (Date.now() - window.viewerState.timerForErrorPage));
        alert('The video could not be loaded, either because the server or network failed or because the format is not supported.');
        break;
      default:

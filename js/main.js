@@ -20,16 +20,17 @@ window.onload = function () {
     '$btnPlay':     document.querySelector('.footer__left__play'),
     '$btnVolume':   document.querySelector('.footer__left__volume'),
     '$btnQuality':  document.querySelector('.footer__left__quality'),
-    '$btnScale':    document.querySelector('.footer__right__scale'),
-    '$btnAlign':    document.querySelector('.footer__right__align'),
+    '$btnScale':    document.querySelector('.footer__right__scale_btn'),
     '$btnMenuOff':  document.querySelector('.footer__right__menu-off'),
     '$btnFullScr':  document.querySelector('.footer__right__fullscr'),
     'active$input': null,
     'highQuality': false,
-    'alignVertical': false,
     'is$sideMenuBoxHidden': false,
     'is$footerHidden': false,
-    'duration': 500
+    'durationShowHideMenu': 1000,   //  ms
+    'durationScaleSubmenu': 4000,
+    'durationFooterAsCtrl': 5000,
+    'timerForErrorPage': undefined
   };
 
   window.viewerState.isVideoWorking = require('./askVideoWorking.js')                          //  boolean
@@ -40,11 +41,11 @@ window.onload = function () {
   
   require('./setMenuAndFooterMethods.js')
   require('./channelSelector.js')
-  require('./qualitySelector.js')
-  require('./alignSelector.js')
+//  require('./qualitySelector.js')
   require('./hideShowMenu.js')
   require('./fullscreen.js')
   require('./videoErrorListener')
-  require('./buttonHelp.js')
+  require('./footer_buttons.js')
+  require('./buttonScale.js')
 
 }
