@@ -47,5 +47,6 @@ window.onload = function () {
   require('./videoErrorListener')
   require('./footer_buttons.js')
   require('./buttonScale.js')
+  require('./screenHeight.js')
 
 }

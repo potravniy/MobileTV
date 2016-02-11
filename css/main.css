@@ -19,7 +19,6 @@ button:active {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-
 /*  Depends on device:  start  */
 
 html {
@@ -30,27 +29,22 @@ html {
 .video {
     background-image: url("../img/poster_small.jpg");
 }
-
-/*  height(px) = k * 1em  */
-@media only screen and (min-height: 400px)  {   html {font-size: 20px;   }    }
-@media only screen and (min-height: 500px)  {   html {font-size: 25px;   }    }
-@media only screen and (min-height: 625px)  {   html {font-size: 31.25px;}    }
-@media only screen and (min-height: 800px)  {   html {font-size: 40px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1000px) {   html {font-size: 50px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1250px) {   html {font-size: 62.5px; }    .video {background-image: url("../img/poster_big.jpg"  );}   }
-@media only screen and (min-height: 1550px) {   html {font-size: 78px;   }    .video {background-image: url("../img/poster_big.jpg"  );}   }
+@media only screen and (min-height: 800px)  {
+    .video {
+        background-image: url("../img/poster_big.jpg");
+    }
+}
 
 body {
     position: relative;
 	height: 40%;
 	overflow: hidden;
     font-family: 'Arial', sans-serif;
-    font-size: 40%;
 }
+/*  body fonSize depends on window height via javascript  */
 @media only screen and (orientation: landscape) {
 	body {
 		height: 100%;
-        font-size: inherit;
 	}
 }
 
@@ -267,10 +261,6 @@ svg.off {
       -ms-transform: rotate(90deg);
        -o-transform: rotate(90deg);
           transform: rotate(90deg);
-}
-
-.footer__right__fullscr {
-    margin-right: 0.25em;
 }
 
 .footer__center {
