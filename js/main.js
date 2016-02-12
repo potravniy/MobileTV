@@ -27,26 +27,25 @@ window.onload = function () {
     'highQuality': false,
     'is$sideMenuBoxHidden': false,
     'is$footerHidden': false,
-    'durationShowHideMenu': 1000,   //  ms
+    'durationShowHideMenu': 500,   //  ms
     'durationScaleSubmenu': 4000,
     'durationFooterAsCtrl': 5000,
     'timerForErrorPage': undefined
   };
 
   window.viewerState.isVideoWorking = require('./askVideoWorking.js')                          //  boolean
-  window.viewerState.isFullScreenAllowed = require('./askFullScreen.js')                       //  boolean
+  window.viewerState.isFullScreenAllowed = false//require('./askFullScreen.js')                       //  boolean
   window.viewerState.is_iPad_iPhone = require('./ask_iPad_iPhone.js')                          //  boolean
   window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')  //  boolean
   window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')                 //  function -> boolean
   
-  require('./setMenuAndFooterMethods.js')
-  require('./channelSelector.js')
-//  require('./qualitySelector.js')
-  require('./hideShowMenu.js')
-  require('./fullscreen.js')
-  require('./videoErrorListener')
-  require('./footer_buttons.js')
-  require('./buttonScale.js')
   require('./screenHeight.js')
-
+  require('./setMenuAndFooterMethods.js')
+  require('./fullscreen.js')
+  require('./buttonInfo.js')
+  require('./buttonPlayPause.js')
+  require('./buttonQuality.js')
+  require('./buttonScale.js')
+  require('./channelSelector.js')
+  require('./videoErrorListener')
 }

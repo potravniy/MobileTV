@@ -1,5 +1,5 @@
 'use strict'
-console.log('screenHeight')
+
 setFontSize()
 window.addEventListener('resize', setFontSize)
 function setFontSize() {
@@ -9,5 +9,4 @@ function setFontSize() {
     } else {
         document.body.style.fontSize = fontSize + 'px'
     }
-    console.log('resize')
 }

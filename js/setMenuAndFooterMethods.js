@@ -32,7 +32,7 @@ if (!window.cancelAnimationFrame)
 
 var $sideMenuBox = window.viewerState.$sideMenuBox
 var $footer = window.viewerState.$footer
-var duration = window.viewerState.duration
+var duration = window.viewerState.durationShowHideMenu
 
 window.viewerState.$sideMenuBox.hide = function () {
     var startTime = undefined
