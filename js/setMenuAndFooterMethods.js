@@ -18,7 +18,7 @@ for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
 if (!window.requestAnimationFrame)
     window.requestAnimationFrame = function(callback, element) {
         var currTime = new Date().getTime();
-        var timeToCall = Math.max(0, 32 - (currTime - lastTime));  //    Math.max(0, 16 - (currTime - lastTime));
+        var timeToCall = 32;  //    Math.max(0, 16 - (currTime - lastTime));
         var id = window.setTimeout(function() { callback(currTime + timeToCall); }, timeToCall);
         lastTime = currTime + timeToCall;
         return id;
@@ -90,7 +90,7 @@ window.viewerState.$footer.hide = function () {
 
 window.viewerState.$footer.show = function () {
     var startTime = undefined
-    $footer.object.style.bottom = ''
+    $footer.object.style.bottom = '0'
     requestAnimationFrame(show)
     function show(timeStamp) {
         if (!startTime) startTime = timeStamp
@@ -102,6 +102,46 @@ window.viewerState.$footer.show = function () {
             $footer.object.style.opacity = 1
             startTime = undefined
             window.viewerState.is$footerHidden = false
+        }
+    }
+}
+window.viewerState.$footer.moveOn = function () {
+    var startTime = undefined
+    $footer.object.style.bottom = '-14%'
+    $sideMenuBox.object.style.height = '100%'
+    requestAnimationFrame(moveOn)
+    function moveOn(timeStamp) {
+        if (!startTime) startTime = timeStamp
+        var progress = (timeStamp - startTime) / duration
+        if (progress <= 1) {
+            $footer.object.style.bottom = -14 + 14 * progress + '%'
+            $sideMenuBox.object.style.height = 100 - 14 * progress + '%'
+            requestAnimationFrame(moveOn)
+        } else {
+            $footer.object.style.bottom = '0'
+            $sideMenuBox.object.style.height = '86%'
+            window.viewerState.$footer.isMovedOn = true
+            startTime = undefined
+        }
+    }
+}
+window.viewerState.$footer.moveOut = function () {
+    var startTime = undefined
+    $footer.object.style.bottom = '0'
+    $sideMenuBox.object.style.height = '86%'
+    requestAnimationFrame(moveOn)
+    function moveOn(timeStamp) {
+        if (!startTime) startTime = timeStamp
+        var progress = (timeStamp - startTime) / duration
+        if (progress <= 1) {
+            $footer.object.style.bottom = -14 * progress + '%'
+            $sideMenuBox.object.style.height = 86 + 14 * progress + '%'
+            requestAnimationFrame(moveOn)
+        } else {
+            $footer.object.style.bottom = '-14%'
+            $sideMenuBox.object.style.height = '100%'
+            window.viewerState.$footer.isMovedOn = false
+            startTime = undefined
         }
     }
 }

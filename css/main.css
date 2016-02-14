@@ -49,13 +49,14 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    background-color: gray;
+    background-color: #000;
+    text-align: center;
 }
 .video {
     position: absolute;
     height: 100%;
-    top: -100%;
-    bottom: -100%;
+    top: -50%;
+    bottom: -50%;
     left: -50%;
     right: -50%;
     margin: auto;
@@ -85,7 +86,7 @@ body {
 .sidebar {
     position: absolute;
     width: 5em;
-    height: 86%;
+    height: 100%;
     right: 0;
     top: 0;
     overflow: hidden;
@@ -150,13 +151,13 @@ body {
 .footer {
     position: absolute;
     left: 0;
-    bottom: 0;
+    bottom: -14%;
     width: 100%;
     height: 14%;
     text-align: center;
     font-size: 1.3em;
     line-height: 200%;
-    background-color: rgba(0, 100, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
 }
 
@@ -184,23 +185,26 @@ body {
     font-size: 2em;
     line-height: 100%;
     text-align: center;
+    padding: 0 0.2em;
     color: #acf;
-}
-svg {
-    width: 1em;
-    fill: #acf;
 }
 .footer svg {
     display: none;
+    width: 1em;
+    fill: #acf;
 }
 .footer svg.active {
     display: inline-block;
 }
-svg.off {
+.footer svg.off {
     fill: rgba(100, 100, 100, 0.5);
 }
-
-
+.footer__right__scale-box,
+.footer__left__quality,
+.footer__left__help,
+.footer__left__volume {
+    display: none;
+}
 .footer__right__scale_btn {
     font-size: inherit;
     color: inherit;
@@ -233,12 +237,6 @@ svg.off {
 }
 
 
-.footer__right__menu-off {
-    width: 1em;
-    height: 1em;
-    line-height: 1em;
-    padding: 0;
-}
 .footer__right__menu-off svg{
   -webkit-transform: rotate(-90deg);
      -moz-transform: rotate(-90deg);
@@ -272,18 +270,23 @@ svg.off {
     color: #acf;
 }
 
-.footer.ctrl {
+.ctrl {
     position: relative;
-    width: 12.5em;
+    width: auto;
     bottom: -86%;
     margin: 0 auto;
-    border-radius: 1em;
+    border-radius: 0.3em;
+    display: inline-block;
 }
-.footer.ctrl .footer__center {
+.ctrl .footer__center {
     display: none;
 }
-.footer.ctrl .footer__left,
-.footer.ctrl .footer__right {
+.ctrl .footer__right__scale-box,
+.ctrl .footer__left__quality {
+    display: inline-block;
+}
+.ctrl .footer__left,
+.ctrl .footer__right {
     position: relative;
 }
 

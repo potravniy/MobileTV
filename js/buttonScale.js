@@ -8,6 +8,7 @@ var $svgScale = document.querySelector('.scale_btn_svg')
 var $btnScaleSubBtnsBox = document.querySelector('.footer__right__scale_subbtns')
 var $subBtnUp = document.querySelector('.subbtn__up svg')
 var $subBtnDown = document.querySelector('.subbtn__down svg')
+var classList = window.viewerState.classList
 var ratio = undefined
 var max$videoHeight = undefined
 var min$videoHeight = undefined
@@ -71,10 +72,10 @@ function stopScaling() {
 }
 function btnScaleHandler(e){
     if(e.target === $btnScale || e.target === $svgScale) {
-        if($btnScaleSubBtnsBox.classList.contains('active')){
+        if(classList.contains($btnScaleSubBtnsBox, 'active')){
             removeActive()
         } else {
-            $btnScaleSubBtnsBox.classList.add('active')
+            classList.add($btnScaleSubBtnsBox, 'active')
             activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
         }
     }
@@ -98,7 +99,7 @@ function subBtnDownHandler(){
     }
 }
 function removeActive() {
-    $btnScaleSubBtnsBox.classList.remove('active')
+    classList.remove($btnScaleSubBtnsBox, 'active')
 }
 // $video.addEventListener('loadstart', function(){
 //     console.log('The loadstart event occurs when the browser starts looking for the specified audio/video. This is when the loading process starts.' + (Date.now() - window.viewerState.timerForErrorPage))

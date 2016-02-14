@@ -3,12 +3,13 @@
 var $help = document.querySelector('.help')
 var $video = window.viewerState.$video
 var $box = window.viewerState.$box
-
 var $btnHelp = window.viewerState.$btnHelp
+var classList = window.viewerState.classList
+
 $btnHelp.addEventListener('click', function(){
-    if($help.classList.contains("active")) {
-        $help.classList.remove("active")
+    if(classList.contains($help, "active")) {
+        classList.remove($help, "active")
     } else {
-        $help.classList.add("active")
+        classList.add($help, "active")
     }
 })

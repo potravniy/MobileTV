@@ -40,15 +40,16 @@ $btns.ch_ugnayavolna.setAttribute( 'data-link-hq', "http://77.88.196.133:8081/wa
 $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/nemo/mor-abr/playlist.m3u8"          )
 
 $slider.addEventListener('click', function(e){
-    e.stopPropagation()
+    //e.stopPropagation()
     if(e.target.tagName === 'INPUT'){
         if(window.viewerState.active$input === e.target) {
+            $video.removeEventListener('error', failed)
             window.viewerState.active$input.checked = false
             window.viewerState.active$input = null
             $video.style.backgroundSize = ""
             $video.setAttribute('src', '')
             $source.setAttribute('src', '')
-            $btnMenuOnOf.style.display = 'none'
+            window.viewerState.$footer.moveOut()
         } else {
             window.viewerState.active$input = e.target
             if(window.viewerState.highQuality)  link = e.target.getAttribute('data-link-hq')
@@ -58,8 +59,29 @@ $slider.addEventListener('click', function(e){
             $video.style.backgroundSize = "0 0"
             if($video.play) $video.play();
             else alert ('video cannot play')
-            $btnMenuOnOf.style.display = 'inline-block'
-            window.viewerState.timerForErrorPage = Date.now()
+            if(!window.viewerState.$footer.isMovedOn) window.viewerState.$footer.moveOn()
+            $video.addEventListener('error', failed)
         }
     }
 })
+
+ function failed(e) {
+   // video playback failed - show a message saying why     - from https://dev.w3.org/html5/spec-author-view/video.html#video
+   switch (e.target.error.code) {
+     case e.target.error.MEDIA_ERR_ABORTED:
+       alert('Воспроизведение видео прервано.');
+       break;
+     case e.target.error.MEDIA_ERR_NETWORK:
+       alert('Ошибка сети привела к нарушению загрузки видео');
+       break;
+     case e.target.error.MEDIA_ERR_DECODE:
+       alert('Воспроизведение видео прекращено из-за искажений при передаче или потому, что видео использует недоступные в Вашем браузере функции.');
+       break;
+     case e.target.error.MEDIA_ERR_SRC_NOT_SUPPORTED:
+       alert('Видео не может быть загружено из-за сбоя в в доступе к серверу или этот видеоформат не поддерживается Вашим браузером.');
+       break;
+     default:
+       alert('Произошла ошибка. Попробуйте еще.');
+       break;
+   }
+ }
