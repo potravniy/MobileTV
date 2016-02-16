@@ -1,10 +1,10 @@
 'use strict'
 
-var $help = document.querySelector('.help')
-var $video = window.viewerState.$video
-var $box = window.viewerState.$box
-var $btnHelp = window.viewerState.$btnHelp
-var classList = window.viewerState.classList
+var $help = document.querySelector('.help'),
+    $video = window.viewerState.$video,
+    $box = window.viewerState.$box,
+    $btnHelp = window.viewerState.$btnHelp,
+    classList = window.viewerState.classList
 
 $btnHelp.addEventListener('click', function(){
     if(classList.contains($help, "active")) {

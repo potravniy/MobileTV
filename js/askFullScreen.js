@@ -5,8 +5,7 @@ module.exports = (function () {
     if ($box.requestFullscreen ||
         $box.mozRequestFullScreen ||
         $box.webkitRequestFullscreen ||
-        $box.msRequestFullscreen
-        ) {
+        $box.msRequestFullscreen) {
         return true 
     } else {
         return false 

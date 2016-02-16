@@ -50,11 +50,12 @@ body {
     height: 100%;
     overflow: hidden;
     background-color: #000;
-    text-align: center;
+    text-align: right;
 }
 .video {
     position: absolute;
     height: 100%;
+    max-width: 100%;
     top: -50%;
     bottom: -50%;
     left: -50%;
@@ -74,24 +75,27 @@ body {
 
 /*  Viewbox end  */
 
-.box-over-video {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    font-size: inherit;
-	overflow: hidden;
-}
 .sidebar {
-    position: absolute;
+    display: inline-block;
+    position: relative;
     width: 5em;
     height: 100%;
     right: 0;
     top: 0;
     overflow: hidden;
     font-size: inherit;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
 }
+.sidebar.show_footer {
+    height: 86%;
+}
+.sidebar.hide_menu {
+    height: 100%;
+    right: -5em;
+}
+
 .sidebar__slider {
     position: absolute;
     right: 0;
@@ -116,10 +120,8 @@ body {
     background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
     background: url("../img/_logos.png") no-repeat, linear-gradient(to right, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
     background-size: 10em;
-    /*opacity: 0.5;*/
 }
 .sidebar__slider__button:hover {
-    /*opacity: 1;*/
     cursor: pointer;
 }
 .sidebar__slider__button.ch_1gorodskoy   {  background-position: -5em     0,  left;  }
@@ -144,27 +146,36 @@ body {
 #ch_ugnayavolna:checked + label.sidebar__slider__button  {  background-position: 0 -40em,  left;  }
 #ch_nemo:checked + label.sidebar__slider__button         {  background-position: 0 -45em,  left;  }
 
-
-
-
+svg {
+    display: none;
+    width: 1em;
+    fill: #acf;
+}
+svg.active {
+    display: inline-block;
+}
+svg.disabled {
+    fill: rgba(100, 100, 100, 0.5);
+}
 
 .footer {
-    position: absolute;
+    position: relative;
     left: 0;
-    bottom: -14%;
     width: 100%;
     height: 14%;
     text-align: center;
-    font-size: 1.3em;
-    line-height: 200%;
+    font-size: 2.8em;
+    line-height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     white-space: nowrap;
 }
-
-.footer > * {
+.footer > *,
+.control > *,
+.scale_box .scale_box__btn {
     display: inline-block;
+    height: 100%;
+    font-size: inherit;
     text-shadow: 0 0 3px #000;
-    vertical-align: middle;
 }
 .footer__left,
 .footer__right {
@@ -177,54 +188,39 @@ body {
 .footer__right {
     right: 0;
 }
+.footer__center {
+    white-space: nowrap;
+    vertical-align: middle;
+}
 .footer__left > *,
 .footer__right > * {
     position: relative;
     float: left;
+    width: 1.4em;
+    height: 1em;
     vertical-align: middle;
-    font-size: 2em;
+    font-size: inherit;
     line-height: 100%;
     text-align: center;
     padding: 0 0.2em;
     color: #acf;
 }
-.footer svg {
-    display: none;
-    width: 1em;
-    fill: #acf;
-}
-.footer svg.active {
-    display: inline-block;
-}
-.footer svg.off {
-    fill: rgba(100, 100, 100, 0.5);
-}
-.footer__right__scale-box,
-.footer__left__quality,
-.footer__left__help,
-.footer__left__volume {
+.btn_volume {
     display: none;
 }
-.footer__right__scale_btn {
-    font-size: inherit;
-    color: inherit;
-}
-.footer__right__scale_subbtns {
+.scale_box__subbtns {
     display: none;
     position: absolute;
     bottom: 100%;
     font-size: inherit;
-    width: 1.15em;
-    height: 2.3em;
+    width: 1em;
+    height: 2em;
 }
-.footer__right__scale_subbtns.active {
+.scale_box__subbtns.active {
     display: block;
 }
-.footer__right__scale_subbtns.active .footer__right__scale_btn {
-    background-color: rgba(255, 255, 255, 0.5);
-} 
-.subbtn__up,
-.subbtn__down {
+.scale_box__subbtn_up,
+.scale_box__subbtn_down {
     display: block;
     font-size: 1em;
     line-height: 100%;
@@ -233,18 +229,15 @@ body {
     height: 50%;
     color: #acf;
     background-color: rgba(0,0,0,0.5);
-    border-bottom: 1px solid #000;
 }
-
-
-.footer__right__menu-off svg{
+.btn__menu_switch__icon.off {
   -webkit-transform: rotate(-90deg);
      -moz-transform: rotate(-90deg);
       -ms-transform: rotate(-90deg);
        -o-transform: rotate(-90deg);
           transform: rotate(-90deg);
 }
-.ctrl .footer__right__menu-off svg {
+.btn__menu_switch__icon.on {
   -webkit-transform: rotate(90deg);
      -moz-transform: rotate(90deg);
       -ms-transform: rotate(90deg);
@@ -252,15 +245,11 @@ body {
           transform: rotate(90deg);
 }
 
-.footer__center {
-    white-space: nowrap;
-    font-size: inherit;
-}
 .footer__center__banner {
     display: block;
-    line-height: 1em;
-    font-size: 1em;
-    padding: 0.25em 0.5em;
+    line-height: 100%;
+    font-size: 0.5em;
+    padding: 0.2em 0.5em;
     color: #778899;
     border: 0.1em solid #5566aa;
     border-radius: 0.2em;
@@ -269,29 +258,36 @@ body {
 .footer__center__banner:hover {
     color: #acf;
 }
-
-.ctrl {
+.control_box {
+    position: absolute;
+    width: 100%;
+    height: 14%;
+    top: 100%;
+    text-align: center;
+}
+.control {
+    display: inline-block;
     position: relative;
-    width: auto;
-    bottom: -86%;
-    margin: 0 auto;
+    height: 100%;
+    top: 0;
+    text-align: center;
+    font-size: 2.8em;
+    line-height: 100%;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 0.3em;
-    display: inline-block;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    transition: all 1s;
 }
-.ctrl .footer__center {
-    display: none;
-}
-.ctrl .footer__right__scale-box,
-.ctrl .footer__left__quality {
-    display: inline-block;
-}
-.ctrl .footer__left,
-.ctrl .footer__right {
-    position: relative;
+.control.show_control {
+    top: -100%;
 }
 
 
 
+
+/*
 .help {
     display: none;
     position: absolute;
@@ -368,4 +364,4 @@ body {
     right: 1em;
     bottom: 0.5em;
     font-size: 50%;
-}
+}*/

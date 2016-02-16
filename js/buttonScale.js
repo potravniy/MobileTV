@@ -1,40 +1,43 @@
 'use strict'
 
 //          Scale
-var $box = window.viewerState.$box
-var $video = window.viewerState.$video
-var $btnScale = window.viewerState.$btnScale
-var $svgScale = document.querySelector('.scale_btn_svg')
-var $btnScaleSubBtnsBox = document.querySelector('.footer__right__scale_subbtns')
-var $subBtnUp = document.querySelector('.subbtn__up svg')
-var $subBtnDown = document.querySelector('.subbtn__down svg')
-var classList = window.viewerState.classList
-var ratio = undefined
-var max$videoHeight = undefined
-var min$videoHeight = undefined
-var step = undefined
-var n = undefined
-var nMax = 0
-var nMin = 0
-var id = undefined
-var activeID = undefined
+var $box = window.viewerState.$box,
+    $video = window.viewerState.$video,
+    $btnScale = window.viewerState.$btnScale,
+    $svgScale = document.querySelector('.scale_box__btn_icon'),
+    $btnScaleSubBtnsBox = document.querySelector('.scale_box__subbtns'),
+    $subBtnUp = window.viewerState.$subBtnUp,
+    $subBtnDown = window.viewerState.$subBtnDown,
+    $subBtnUpIcon = document.querySelector('.subbtn_up'),
+    $subBtnDownIcon = document.querySelector('.subbtn_down'),
+    $btnMenuOff = window.viewerState.$btnMenuOff,
+    classList = window.viewerState.classList,
+    ratio = undefined,
+    max$videoHeight = undefined,
+    min$videoHeight = undefined,
+    step = undefined,
+    n = undefined,
+    nMax = 0,
+    nMin = 0,
+    id = undefined,
+    activeID = undefined
 
-$video.addEventListener('loadeddata', scaleRestart)
-$video.addEventListener('error', function () {
-    clearTimeout(id)
-    stopScaling()
-    console.log('video error')
-})
+disableIcon()
+
+$btnMenuOff.addEventListener('click', scaleRestart)
 document.addEventListener('fullscreenchange', scaleRestart)
 document.addEventListener('webkitfullscreenchange', scaleRestart)
 document.addEventListener('mozfullscreenchange', scaleRestart)
 document.addEventListener('MSFullscreenChange', scaleRestart)
+$video.addEventListener('error', function () {
+    clearTimeout(id)
+    stopScaling()
+})
 
 function scaleRestart() {
-    console.log('Rescale start: ' + (Date.now() - window.viewerState.timerForErrorPage))      
     stopScaling()
     clearTimeout(id)
-    id = setTimeout(startScaling, 1500)
+    id = setTimeout(startScaling, 1000)
 }
 function startScaling() {
     ratio = $box.clientWidth / $video.offsetWidth
@@ -43,32 +46,32 @@ function startScaling() {
         nMin = Math.floor((min$videoHeight - 100) / 14)
         nMax = 0
         step = (min$videoHeight - 100) / nMin
-        console.log(nMin + ' steps')
-        $subBtnDown.style.fill = ''
-        $subBtnUp.style.fill = 'rgba(0, 0, 0, 0.5)'
+        classList.add($subBtnUpIcon, 'disabled')
+        classList.remove($subBtnDownIcon, 'disabled')
     } else {
         max$videoHeight = 100 * ratio   //  %
         nMax = Math.ceil((max$videoHeight - 100) / 14)
         nMin = 0
         step = (max$videoHeight - 100) / nMax
-        console.log(nMax + ' steps')
-        $subBtnDown.style.fill = 'rgba(0, 0, 0, 0.5)'
-        $subBtnUp.style.fill = ''
+        classList.remove($subBtnUpIcon, 'disabled')
+        classList.add($subBtnDownIcon, 'disabled')
     }
     n = 0
     $btnScale.addEventListener('click', btnScaleHandler) 
     $subBtnUp.addEventListener('click', subBtnUpHandler) 
-    $subBtnDown.addEventListener('click', subBtnDownHandler) 
+    $subBtnDown.addEventListener('click', subBtnDownHandler)
+    enableIcon()
 }
 function stopScaling() {
     ratio = undefined
     max$videoHeight = undefined
     step = undefined
     n = undefined
-    $video.style.height = '100%'
+    $video.style.height = ''
     $btnScale.removeEventListener('click', btnScaleHandler) 
     $subBtnUp.removeEventListener('click', subBtnUpHandler) 
     $subBtnDown.removeEventListener('click', subBtnDownHandler)
+    disableIcon()
 }
 function btnScaleHandler(e){
     if(e.target === $btnScale || e.target === $svgScale) {
@@ -83,8 +86,8 @@ function btnScaleHandler(e){
 function subBtnUpHandler(){
     if(n < nMax) {
         $video.style.height = 100 + ++n * step + '%'
-        if(n === nMax) $subBtnUp.style.fill = 'rgba(0, 0, 0, 0.5)'
-        if(n === (nMin + 1)) $subBtnDown.style.fill = ''
+        if(n === nMax) classList.add($subBtnUp, 'diabled') // $subBtnUp.style.fill = 'rgba(0, 0, 0, 0.5)'
+        if(n === (nMin + 1)) classList.remove($subBtnDown, 'diabled') //  $subBtnDown.style.fill = ''
         clearTimeout(activeID)
         activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
     }
@@ -92,8 +95,8 @@ function subBtnUpHandler(){
 function subBtnDownHandler(){
     if(n > nMin) {
         $video.style.height = 100 + --n * step + '%'
-        if(n === nMin) $subBtnDown.style.fill = 'rgba(0, 0, 0, 0.5)'
-        if(n === (nMax - 1)) $subBtnUp.style.fill = ''
+        if(n === nMin) classList.add($subBtnDown, 'disabled')  // $subBtnDown.style.fill = 'rgba(0, 0, 0, 0.5)'
+        if(n === (nMax - 1)) classList.remove($subBtnUp, 'disabled')  // $subBtnUp.style.fill = ''
         clearTimeout(activeID)
         activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
     }
@@ -101,6 +104,13 @@ function subBtnDownHandler(){
 function removeActive() {
     classList.remove($btnScaleSubBtnsBox, 'active')
 }
+function disableIcon() {
+    classList.add($svgScale, 'disabled')
+}
+function enableIcon() {
+    classList.remove($svgScale, 'disabled')
+}
+
 // $video.addEventListener('loadstart', function(){
 //     console.log('The loadstart event occurs when the browser starts looking for the specified audio/video. This is when the loading process starts.' + (Date.now() - window.viewerState.timerForErrorPage))
 // })

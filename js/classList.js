@@ -1,6 +1,5 @@
 'use strict'
 
-
 module.exports = {
     'contains': function(el, cls) {
         if(el.classList) return el.classList.contains(cls)
@@ -25,12 +24,12 @@ module.exports = {
             return 
         } 
         var arr = el.getAttribute('class').split(' ')
-        var removed = ''
+        var res = ''
         for(var i=0; i<arr.length; i++){
             if(arr[i] != cls) {
-                removed += arr[i] + ' '
+                res += arr[i] + ' '
             }
         }
-        el.setAttribute('class', removed)
+        el.setAttribute('class', res)
     }
 }

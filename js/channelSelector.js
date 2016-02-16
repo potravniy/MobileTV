@@ -1,11 +1,14 @@
 "use strict"
 
-var $video = window.viewerState.$video
-var $source = window.viewerState.$source
-var $slider = window.viewerState.$slider
-var $btnMenuOnOf = document.querySelector('.footer__right__menu-off')
-var link = ''
-var $btns = {
+var $video = window.viewerState.$video,
+    $source = window.viewerState.$source,
+    $slider = window.viewerState.$slider,
+    highQuality = window.viewerState.highQuality,
+    active$input = window.viewerState.active$input,
+    $sideMenuBox = window.viewerState.$sideMenuBox,
+    classList = window.viewerState.classList,
+    link = '',
+    $btns = {
     "ch_1gorodskoy":  document.querySelector("#ch_1gorodskoy"),
     "ch_3tsyfrovoy":  document.querySelector("#ch_3tsyfrovoy"),
     "ch_reporter":    document.querySelector("#ch_reporter"),
@@ -40,31 +43,30 @@ $btns.ch_ugnayavolna.setAttribute( 'data-link-hq', "http://77.88.196.133:8081/wa
 $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/nemo/mor-abr/playlist.m3u8"          )
 
 $slider.addEventListener('click', function(e){
-    //e.stopPropagation()
     if(e.target.tagName === 'INPUT'){
-        if(window.viewerState.active$input === e.target) {
-            $video.removeEventListener('error', failed)
-            window.viewerState.active$input.checked = false
-            window.viewerState.active$input = null
-            $video.style.backgroundSize = ""
+        if(active$input === e.target) {
+            active$input.checked = false
+            active$input = null
             $video.setAttribute('src', '')
             $source.setAttribute('src', '')
-            window.viewerState.$footer.moveOut()
+            $video.style.backgroundSize = ""
+            classList.remove($sideMenuBox, 'show_footer')
+//            $video.removeEventListener('error', failed)
         } else {
-            window.viewerState.active$input = e.target
-            if(window.viewerState.highQuality)  link = e.target.getAttribute('data-link-hq')
-            else link = e.target.getAttribute('data-link-lq')
+            active$input = e.target
+            highQuality = false
+            link = e.target.getAttribute('data-link-lq')
             $video.setAttribute('src', link)
             $source.setAttribute('src', link)
             $video.style.backgroundSize = "0 0"
             if($video.play) $video.play();
             else alert ('video cannot play')
-            if(!window.viewerState.$footer.isMovedOn) window.viewerState.$footer.moveOn()
-            $video.addEventListener('error', failed)
+            classList.add($sideMenuBox, 'show_footer')
+//            $video.addEventListener('error', failed)
         }
     }
 })
-
+/*
  function failed(e) {
    // video playback failed - show a message saying why     - from https://dev.w3.org/html5/spec-author-view/video.html#video
    switch (e.target.error.code) {
@@ -85,3 +87,4 @@ $slider.addEventListener('click', function(e){
        break;
    }
  }
+*/
