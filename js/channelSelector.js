@@ -3,8 +3,6 @@
 var $video = window.viewerState.$video,
     $source = window.viewerState.$source,
     $slider = window.viewerState.$slider,
-    highQuality = window.viewerState.highQuality,
-    active$input = window.viewerState.active$input,
     $sideMenuBox = window.viewerState.$sideMenuBox,
     classList = window.viewerState.classList,
     link = '',
@@ -44,17 +42,17 @@ $btns.ch_nemo.setAttribute(        'data-link-hq', "http://77.88.196.133:8081/ne
 
 $slider.addEventListener('click', function(e){
     if(e.target.tagName === 'INPUT'){
-        if(active$input === e.target) {
-            active$input.checked = false
-            active$input = null
+        if(window.viewerState.active$input === e.target) {
+            window.viewerState.active$input.checked = false
+            window.viewerState.active$input = null
             $video.setAttribute('src', '')
             $source.setAttribute('src', '')
             $video.style.backgroundSize = ""
             classList.remove($sideMenuBox, 'show_footer')
 //            $video.removeEventListener('error', failed)
         } else {
-            active$input = e.target
-            highQuality = false
+            window.viewerState.active$input = e.target
+            window.viewerState.highQuality = false
             link = e.target.getAttribute('data-link-lq')
             $video.setAttribute('src', link)
             $source.setAttribute('src', link)

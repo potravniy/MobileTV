@@ -222,7 +222,7 @@ svg.disabled {
 .scale_box__subbtn_up,
 .scale_box__subbtn_down {
     display: block;
-    font-size: 1em;
+    font-size: 0.7em;
     line-height: 100%;
     text-align: center;
     width: 100%;

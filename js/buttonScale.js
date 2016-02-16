@@ -22,7 +22,7 @@ var $box = window.viewerState.$box,
     id = undefined,
     activeID = undefined
 
-disableIcon()
+disableMainIcon()
 
 $btnMenuOff.addEventListener('click', scaleRestart)
 document.addEventListener('fullscreenchange', scaleRestart)
@@ -60,7 +60,7 @@ function startScaling() {
     $btnScale.addEventListener('click', btnScaleHandler) 
     $subBtnUp.addEventListener('click', subBtnUpHandler) 
     $subBtnDown.addEventListener('click', subBtnDownHandler)
-    enableIcon()
+    enableMainIcon()
 }
 function stopScaling() {
     ratio = undefined
@@ -71,43 +71,43 @@ function stopScaling() {
     $btnScale.removeEventListener('click', btnScaleHandler) 
     $subBtnUp.removeEventListener('click', subBtnUpHandler) 
     $subBtnDown.removeEventListener('click', subBtnDownHandler)
-    disableIcon()
+    disableMainIcon()
 }
 function btnScaleHandler(e){
     if(e.target === $btnScale || e.target === $svgScale) {
         if(classList.contains($btnScaleSubBtnsBox, 'active')){
-            removeActive()
+            hideSubMenuBox()
         } else {
             classList.add($btnScaleSubBtnsBox, 'active')
-            activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
+            activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
         }
     }
 }
 function subBtnUpHandler(){
     if(n < nMax) {
         $video.style.height = 100 + ++n * step + '%'
-        if(n === nMax) classList.add($subBtnUp, 'diabled') // $subBtnUp.style.fill = 'rgba(0, 0, 0, 0.5)'
-        if(n === (nMin + 1)) classList.remove($subBtnDown, 'diabled') //  $subBtnDown.style.fill = ''
+        if(n === nMax) classList.add($subBtnUpIcon, 'disabled')
+        if(n === (nMin + 1)) classList.remove($subBtnDownIcon, 'disabled')
         clearTimeout(activeID)
-        activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
+        activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
     }
 }
 function subBtnDownHandler(){
     if(n > nMin) {
         $video.style.height = 100 + --n * step + '%'
-        if(n === nMin) classList.add($subBtnDown, 'disabled')  // $subBtnDown.style.fill = 'rgba(0, 0, 0, 0.5)'
-        if(n === (nMax - 1)) classList.remove($subBtnUp, 'disabled')  // $subBtnUp.style.fill = ''
+        if(n === nMin) classList.add($subBtnDownIcon, 'disabled')
+        if(n === (nMax - 1)) classList.remove($subBtnUpIcon, 'disabled')
         clearTimeout(activeID)
-        activeID = setTimeout(removeActive, window.viewerState.durationScaleSubmenu)
+        activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
     }
 }
-function removeActive() {
+function hideSubMenuBox() {
     classList.remove($btnScaleSubBtnsBox, 'active')
 }
-function disableIcon() {
+function disableMainIcon() {
     classList.add($svgScale, 'disabled')
 }
-function enableIcon() {
+function enableMainIcon() {
     classList.remove($svgScale, 'disabled')
 }
 
