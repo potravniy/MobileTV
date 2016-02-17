@@ -49,7 +49,7 @@ $slider.addEventListener('click', function(e){
             $source.setAttribute('src', '')
             $video.style.backgroundSize = ""
             classList.remove($sideMenuBox, 'show_footer')
-//            $video.removeEventListener('error', failed)
+            $video.removeEventListener('error', failed)
         } else {
             window.viewerState.active$input = e.target
             window.viewerState.highQuality = false
@@ -60,11 +60,11 @@ $slider.addEventListener('click', function(e){
             if($video.play) $video.play();
             else alert ('video cannot play')
             classList.add($sideMenuBox, 'show_footer')
-//            $video.addEventListener('error', failed)
+            $video.addEventListener('error', failed)
         }
     }
 })
-/*
+
  function failed(e) {
    // video playback failed - show a message saying why     - from https://dev.w3.org/html5/spec-author-view/video.html#video
    switch (e.target.error.code) {
@@ -85,4 +85,3 @@ $slider.addEventListener('click', function(e){
        break;
    }
  }
-*/

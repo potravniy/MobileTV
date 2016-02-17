@@ -4,23 +4,25 @@ var $btnQuality = window.viewerState.$btnQuality,
     $svgQuality = document.querySelector('.btn_quality__icon'),
     $video = window.viewerState.$video,
     $source = window.viewerState.$source,
-    $btnMenuOn = window.viewerState.$btnMenuOn,
+    $btnMenuOff = window.viewerState.$btnMenuOff,
     classList = window.viewerState.classList,
     link = ''
 
-styleQualityButton()
-
 $btnQuality.addEventListener('click', toggleQuality)
-document.addEventListener("fullscreenchange", exitFullScreen)
-document.addEventListener("webkitfullscreenchange", exitFullScreen)
-document.addEventListener("mozfullscreenchange", exitFullScreen)
-document.addEventListener("MSFullscreenChange", exitFullScreen)
-$btnMenuOn.addEventListener('click', lowerQuality)
+document.addEventListener("fullscreenchange", styleQualityButton)
+document.addEventListener("webkitfullscreenchange", styleQualityButton)
+document.addEventListener("mozfullscreenchange", styleQualityButton)
+document.addEventListener("MSFullscreenChange", styleQualityButton)
+$btnMenuOff.addEventListener('click', styleQualityButton)
 
 function toggleQuality(){
     if (window.viewerState.active$input) {
         if (window.viewerState.highQuality) {
-            lowerQuality()
+            window.viewerState.highQuality = false
+            link = window.viewerState.active$input.getAttribute('data-link-lq')
+            $video.setAttribute('src', link)
+            $source.setAttribute('src', link)
+            $video.play()
         } else {
             window.viewerState.highQuality = true
             link = window.viewerState.active$input.getAttribute('data-link-hq')
@@ -30,18 +32,6 @@ function toggleQuality(){
         }
         styleQualityButton()
     }
-}
-function exitFullScreen() {
-    if(!window.viewerState.ask$boxInFullScreen()){
-        lowerQuality()
-    }
-}
-function lowerQuality() {
-    window.viewerState.highQuality = false
-    link = window.viewerState.active$input.getAttribute('data-link-lq')
-    $video.setAttribute('src', link)
-    $source.setAttribute('src', link)
-    $video.play()
 }
 function styleQualityButton() {
     if (window.viewerState.highQuality) {
