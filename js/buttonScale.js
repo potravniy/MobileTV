@@ -2,7 +2,6 @@
 
 var $box = window.viewerState.$box,
     $video = window.viewerState.$video,
-    $boxScale = document.querySelector('scale_box'),
     $btnScale = window.viewerState.$btnScale,
     $svgScale = document.querySelector('.scale_box__btn_icon'),
     $btnScaleSubBtnsBox = document.querySelector('.scale_box__subbtns'),
@@ -13,130 +12,64 @@ var $box = window.viewerState.$box,
     $btnMenuOff = window.viewerState.$btnMenuOff,
     $btnMenuOn = window.viewerState.$btnMenuOn,
     classList = window.viewerState.classList,
-    ratio = undefined,
-    max$videoHeight = undefined,
-    min$videoHeight = undefined,
-    step = undefined,
-    n = undefined,
-    nMax = 0,
-    nMin = 0,
-    id = undefined,
-    activeID = undefined
+    init$videoHeight = undefined,
+    init$videoWidth = undefined,
+    scaledHorisontally = false,
+    id = undefined
 
-disableMainIcon()
+classList.add($svgScale, 'disabled')
 
-$btnMenuOff.addEventListener('click', scaleRestart)
-$btnMenuOn.addEventListener('click', stopScaling)
+$video.addEventListener('playing', init)
+$btnMenuOff.addEventListener('click', scaleBtnOn)
+$btnMenuOn.addEventListener('click', scaleBtnOff)
 document.addEventListener('fullscreenchange', fullScreenChange)
 document.addEventListener('webkitfullscreenchange', fullScreenChange)
 document.addEventListener('mozfullscreenchange', fullScreenChange)
 document.addEventListener('MSFullscreenChange', fullScreenChange)
-$video.addEventListener('error', function () {
-    clearTimeout(id)
-    stopScaling()
-})
+
+function init(){
+    setTimeout(scaleHorisontally, 300)
+}
+function scaleHorisontally() {
+    $video.style.width = $box.clientWidth + 'px'
+    $video.style.height = $box.clientWidth * $video.videoHeight / $video.videoWidth + 'px'
+    scaledHorisontally = true
+    console.log('screen: ' + $box.clientWidth + 'x' + $box.clientHeight + "\n"
+                + 'video: ' + $box.clientWidth + 'x' + $box.clientWidth * $video.videoHeight / $video.videoWidth)
+}
+function scaleVertically() {
+    $video.style.width = $box.clientHeight * $video.videoWidth / $video.videoHeight + 'px'
+    $video.style.height = $box.clientHeight + 'px'
+    scaledHorisontally = false
+    console.log('screen: ' + $box.clientWidth + 'x' + $box.clientHeight + "\n"
+                + 'video: ' + $box.clientHeight * $video.videoWidth / $video.videoHeight + 'x' + $box.clientHeight)
+}
+
 function fullScreenChange() {
     if(window.viewerState.ask$boxInFullScreen()){
-        scaleRestart()
+        scaleBtnOn()
     } else {
-        stopScaling()
+        scaleBtnOff()
     }
+    setTimeout(scaleHorisontally, 300)
 }
-function scaleRestart() {
-    stopScaling()
-    clearTimeout(id)
-    id = setTimeout(startScaling, 2000)
+function scaleBtnOn() {
+    setTimeout(function () {
+        if ($box.clientWidth !== $video.offsetWidth || $box.clientHeight !== $video.offsetHeight) {
+            $btnScale.addEventListener('click', toggleScreenAlign)
+            classList.remove($svgScale, 'disabled')
+        } else classList.add($svgScale, 'disabled')
+    }, 300)
 }
-function startScaling() {
-    ratio = $box.clientWidth / $video.offsetWidth
-    if (ratio < 1) {
-        min$videoHeight = 100 * ratio   //  %
-        nMin = Math.floor((min$videoHeight - 100) / 14)
-        nMax = 0
-        n = 0
-        step = (min$videoHeight - 100) / nMin
-        classList.add($subBtnUpIcon, 'disabled')
-        classList.remove($subBtnDownIcon, 'disabled')
-        setListeners()
-    } else if (ratio > 1) {
-        max$videoHeight = 100 * ratio   //  %
-        nMax = Math.ceil((max$videoHeight - 100) / 14)
-        nMin = 0
-        n = 0
-        step = (max$videoHeight - 100) / nMax
-        classList.remove($subBtnUpIcon, 'disabled')
-        classList.add($subBtnDownIcon, 'disabled')
-        setListeners()
-    } else if (ratio === 1) {
-        nMax = 0
-        nMin = 0
-        n = 0
-    }
-    console.log('startScaling: '
-    + '\n nMin: ' + nMin
-    + '\n nMax: ' + nMax
-    + '\n n:    ' + n)
-}
-function setListeners() {
-    $btnScale.addEventListener('click', btnScaleHandler) 
-    $subBtnUp.addEventListener('click', subBtnUpHandler) 
-    $subBtnDown.addEventListener('click', subBtnDownHandler)
-    enableMainIcon()
-}
-function stopScaling() {
-    hideSubMenuBox()
-    ratio = undefined
-    max$videoHeight = undefined
-    step = undefined
-    n = undefined
-    $video.style.height = ''
-    $btnScale.removeEventListener('click', btnScaleHandler) 
-    $subBtnUp.removeEventListener('click', subBtnUpHandler) 
-    $subBtnDown.removeEventListener('click', subBtnDownHandler)
-    disableMainIcon()
-}
-function btnScaleHandler(e){
-    if(e.target === $btnScale || e.target === $svgScale) {
-        if(classList.contains($btnScaleSubBtnsBox, 'active')){
-            hideSubMenuBox()
-        } else {
-            classList.add($btnScaleSubBtnsBox, 'active')
-            activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
-        }
-    }
-}
-function subBtnUpHandler(){
-    if(n < nMax) {
-        $video.style.height = 100 + ++n * step + '%'
-        if(n === nMax) classList.add($subBtnUpIcon, 'disabled')
-        if(n === (nMin + 1)) classList.remove($subBtnDownIcon, 'disabled')
-        clearTimeout(activeID)
-        activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
-        console.log('subBtnUpHandler: '
-        + '\n nMin: ' + nMin
-        + '\n nMax: ' + nMax
-        + '\n n:    ' + n)
-    }
-}
-function subBtnDownHandler(){
-    if(n > nMin) {
-        $video.style.height = 100 + --n * step + '%'
-        if(n === nMin) classList.add($subBtnDownIcon, 'disabled')
-        if(n === (nMax - 1)) classList.remove($subBtnUpIcon, 'disabled')
-        clearTimeout(activeID)
-        activeID = setTimeout(hideSubMenuBox, window.viewerState.durationScaleSubmenu)
-        console.log('subBtnDownHandler: '
-        + '\n nMin: ' + nMin
-        + '\n nMax: ' + nMax
-        + '\n n:    ' + n)
-    }
-}
-function hideSubMenuBox() {
-    classList.remove($btnScaleSubBtnsBox, 'active')
-}
-function disableMainIcon() {
+function scaleBtnOff() {
+    $btnScale.removeEventListener('click', toggleScreenAlign)
     classList.add($svgScale, 'disabled')
+    setTimeout(scaleHorisontally, 300)
 }
-function enableMainIcon() {
-    classList.remove($svgScale, 'disabled')
+function toggleScreenAlign() {
+    if(scaledHorisontally){
+        scaleVertically()
+    } else {
+        scaleHorisontally()
+    }
 }

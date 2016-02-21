@@ -9,6 +9,7 @@ button {
     padding: 0;
     background-color: transparent;
     border: none; 
+    text-shadow: 0 0 3px #000;
     cursor: default;
 }
 button:hover {
@@ -54,8 +55,6 @@ body {
 }
 .video {
     position: absolute;
-    height: 100%;
-    max-width: 100%;
     top: -50%;
     bottom: -50%;
     left: -50%;
@@ -66,6 +65,11 @@ body {
     background-repeat: no-repeat;
     background-size: auto 100%;
     background-position: center;
+    -webkit-transition: height 0.5s, width 0.5s;
+    -moz-transition: height 0.5s, width 0.5s;
+    transition: height 0.5s, width 0.5s;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);   
 }
 @media only screen and (min-height: 800px)  {
     .video {
@@ -80,13 +84,12 @@ body {
     position: relative;
     width: 5em;
     height: 100%;
-    right: 0;
-    top: 0;
     overflow: hidden;
     font-size: inherit;
     -webkit-transition: all 1s;
     -moz-transition: all 1s;
     transition: all 1s;
+    margin-bottom: -0.16em;
 }
 .sidebar.show_footer {
     height: 86%;
@@ -114,11 +117,10 @@ body {
     font-size: inherit;
     width: 5em;
     height: 5em;
-    background-color: #5e5e5e;
-    background: url("../img/_logos.png") no-repeat;
-    background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
+    background: url("../img/_logos.png") no-repeat rgba(0, 0, 0, 0.1);
+    /*background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
     background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
-    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
+    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));*/
     background-size: 10em;
 }
 .sidebar__slider__button:hover {
@@ -166,7 +168,7 @@ svg.disabled {
     text-align: center;
     font-size: 2.8em;
     line-height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 0.3);
     white-space: nowrap;
 }
 .footer > *,
@@ -283,85 +285,3 @@ svg.disabled {
 .control.show_control {
     top: -100%;
 }
-
-
-
-
-/*
-.help {
-    display: none;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 85%;
-    height: 85%;
-    color: #248;
-    text-align: center;
-    padding: 0.25em 0.5em;
-    background-color: #cc8;
-    border: 0.1em solid #5566aa;
-    border-radius: 1em;
-}
-.help.active {
-    display: block;
-}
-.help__side_menu,
-.help__footer {
-    position: absolute;
-    color: #333;
-    padding: 0.25em 0.5em;
-    margin: 0.25em 0.5em;
-    background-color: #eee; 
-    border-radius: 0.25em;
-}
-.help__side_menu {
-    right: -1em;
-    font-size: 70%;
-    text-align: right;
-    min-width: 50%;
-    white-space: nowrap;
-    bottom: 20em;
-}
-.help__side_menu:after {
-    content: '';
-    display: block;
-    width: 2em;
-    height: 1em;
-    position: absolute;
-    right: -2em;
-    top: 0.25em;
-    border-top: 0.5em solid transparent;
-    border-right: none;
-    border-bottom: 0.5em solid transparent;
-    border-left: 2em solid #eee;
-}
-.help__footer {
-    text-align: left;
-    min-height: 50%;
-    bottom: 0.9em;
-}
-.help__footer > * {
-    padding: 0.2em 0.3em 0.2em 1.7em;
-    text-indent: -1.5em;
-    font-size: 70%;
-    line-height: 111%;
-}
-.help__footer:after {
-    content: '';
-    display: block;
-    width: 2em;
-    height: 1em;
-    position: absolute;
-    left: 7em;
-    bottom: -2em;
-    border-top: 2em solid #eee;
-    border-right: 1em solid transparent;
-    border-bottom: none;
-    border-left: 1em solid transparent;
-}
-.help__footer__copyright {
-    position: absolute;
-    right: 1em;
-    bottom: 0.5em;
-    font-size: 50%;
-}*/
