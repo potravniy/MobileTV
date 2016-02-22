@@ -22,7 +22,6 @@ window.onload = function () {
     '$btnFullScrOn':    document.querySelector('.footer .btn__fullscr'),
     '$btnFullScrOff':   document.querySelector('.control .btn__fullscr'),
     'active$input': null,                                               //  object
-    'isVideoWorking': false,                                            //  boolean
     'isFullScreenAllowed': false,                                       //  boolean
     'is_iPad_iPhone': /(iPhone|iPod|iPad).*AppleWebKit/i.test(window.navigator.userAgent),   //  boolean
     'is_iPad_iPhone_inFullScreen': false,                               //  boolean
@@ -37,7 +36,7 @@ window.onload = function () {
      }
   };
 
-  window.viewerState.isVideoWorking = require('./askVideoWorking.js')
+  require('./askChannelList.js')
   window.viewerState.isFullScreenAllowed = require('./askFullScreen.js')
   window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')
   window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')

@@ -9,21 +9,20 @@ var $video = window.viewerState.$video,
     $svgPauseCtrl = document.querySelector('.control .btn_play__icon_pause'),
     classList = window.viewerState.classList
 
-if ($video.paused){
-    setIconsPlay()
-} else {
-    setIconsPause()
-} 
 $btnPlayFooter.addEventListener('click', togglePlayPause)
 $btnPlayCtrl.addEventListener('click', togglePlayPause)
-$video.addEventListener('play', setIconsPause())
-$video.addEventListener('pause', setIconsPlay())
 $video.addEventListener('click', function(e){
         e.preventDefault()
 })
 function togglePlayPause(){
-    if ($video.paused) $video.play() 
-    else $video.pause()
+    if ($video.paused) {
+        $video.play()
+        setIconsPause()
+    } 
+    else {
+        $video.pause()
+        setIconsPlay()
+    }
 }
 function setIconsPlay() {
     classList.add($svgPlayFooter, "active")

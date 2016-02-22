@@ -16,12 +16,13 @@ document.addEventListener("MSFullscreenChange", styleQualityButton)
 $btnMenuOff.addEventListener('click', styleQualityButton)
 
 function toggleQuality(){
+    var ch = window.viewerState.active$input.getAttribute('id')
     if (window.viewerState.highQuality) {
         window.viewerState.highQuality = false
-        link = window.viewerState.active$input.getAttribute('data-link-lq')
+        link = window.viewerState.chList[ch].lq
     } else {
         window.viewerState.highQuality = true
-        link = window.viewerState.active$input.getAttribute('data-link-hq')
+        link = window.viewerState.chList[ch].hq
     }
     if(window.hls){
         window.hls.destroy()

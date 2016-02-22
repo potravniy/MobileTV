@@ -118,43 +118,20 @@ body {
     width: 5em;
     height: 5em;
     background: url("../img/_logos.png") no-repeat rgba(0, 0, 0, 0.1);
-    /*background: url("../img/_logos.png") no-repeat, -webkit-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
-    background: url("../img/_logos.png") no-repeat, -o-linear-gradient(left, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));
-    background: url("../img/_logos.png") no-repeat, linear-gradient(to right, rgba(222, 222, 222, 0.0), rgba(120, 120, 120, 0.5), rgba(25, 25, 25, 0.7));*/
     background-size: 10em;
 }
 .sidebar__slider__button:hover {
     cursor: pointer;
 }
-.sidebar__slider__button.ch_1gorodskoy   {  background-position: -5em     0,  left;  }
-.sidebar__slider__button.ch_3tsyfrovoy   {  background-position: -5em  -5em,  left;  }
-.sidebar__slider__button.ch_reporter     {  background-position: -5em -10em,  left;  }
-.sidebar__slider__button.ch_academia     {  background-position: -5em -15em,  left;  }
-.sidebar__slider__button.ch_a1           {  background-position: -5em -20em,  left;  }
-.sidebar__slider__button.ch_dumskaya     {  background-position: -5em -25em,  left;  }
-.sidebar__slider__button.ch_gtv          {  background-position: -5em -30em,  left;  }
-.sidebar__slider__button.ch_stv          {  background-position: -5em -35em,  left;  }
-.sidebar__slider__button.ch_ugnayavolna  {  background-position: -5em -40em,  left;  }
-.sidebar__slider__button.ch_nemo         {  background-position: -5em -45em,  left;  }
-
-#ch_1gorodskoy:checked + label.sidebar__slider__button   {  background-position: 0     0,  left;  }
-#ch_3tsyfrovoy:checked + label.sidebar__slider__button   {  background-position: 0  -5em,  left;  }
-#ch_reporter:checked + label.sidebar__slider__button     {  background-position: 0 -10em,  left;  }
-#ch_academia:checked + label.sidebar__slider__button     {  background-position: 0 -15em,  left;  }
-#ch_a1:checked + label.sidebar__slider__button           {  background-position: 0 -20em,  left;  }
-#ch_dumskaya:checked + label.sidebar__slider__button     {  background-position: 0 -25em,  left;  }
-#ch_gtv:checked + label.sidebar__slider__button          {  background-position: 0 -30em,  left;  }
-#ch_stv:checked + label.sidebar__slider__button          {  background-position: 0 -35em,  left;  }
-#ch_ugnayavolna:checked + label.sidebar__slider__button  {  background-position: 0 -40em,  left;  }
-#ch_nemo:checked + label.sidebar__slider__button         {  background-position: 0 -45em,  left;  }
 
 svg {
     display: none;
     width: 1em;
+    height: 1em;
     fill: #acf;
 }
 svg.active {
-    display: inline-block;
+    display: block;
 }
 svg.disabled {
     fill: rgba(100, 100, 100, 0.5);
