@@ -27,7 +27,6 @@ window.onload = function () {
     'is_iPad_iPhone_inFullScreen': false,                               //  boolean
     'ask$boxInFullScreen': null,                                        //  function -> boolean
     'highQuality': false,                                               //  boolean
-    'durationScaleSubmenu': 4000,                                       //  ms
     'durationCtrlVisible': 5000,                                        //  ms
     'classList': {
         'contains': null,                                               //  function -> boolean
@@ -41,7 +40,6 @@ window.onload = function () {
   window.viewerState.is_iPad_iPhone_inFullScreen = require('./ask_iPad_iPhone_FullScreen.js')
   window.viewerState.ask$boxInFullScreen = require('./ask$boxInFullScreen.js')
   window.viewerState.classList = require('./classList.js')
-    
   require('./screenHeight.js')
   //    Init completed
   require('./channelSelector.js')

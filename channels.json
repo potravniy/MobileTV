@@ -1,82 +1,86 @@
 [
     {
+        "name":"banner",
+        "text":"Live-TV - онлайн ТВ"
+    }
+,   {
         "name":"dumskaya",
         "lq":"http://77.88.196.138:8081/dumska/dumska-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.138:8081/dumska/dumska-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-25
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-5
     }
 ,   {
         "name":"ugnayavolna",
         "lq":"http://77.88.196.133:8081/wave/wave-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/wave/wave-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-40
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-8
     }
 ,   {
         "name":"1gorodskoy",
         "lq":"http://77.88.196.133:8081/1tvod/1tvod-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/1tvod/1tvod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":0
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":0
     }
 ,   {
         "name":"3tsyfrovoy",
         "lq":"http://cdn5.live-tv.od.ua:8081/tv/3tvod-abr-lq/playlist.m3u8",
         "hq":"http://cdn5.live-tv.od.ua:8081/tv/3tvod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-5
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-1
     }
 ,   {
         "name":"reporter",
         "lq":"http://cdn4.live-tv.od.ua:8081/tv/31chod-abr-lq/playlist.m3u8",
         "hq":"http://cdn4.live-tv.od.ua:8081/tv/31chod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-10
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-2
     }
 ,   {
         "name":"academia",
         "lq":"http://cdn4.live-tv.od.ua:8081/tv/36chod-abr-lq/playlist.m3u8",
         "hq":"http://cdn4.live-tv.od.ua:8081/tv/36chod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-15
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-3
     }
 ,   {
         "name":"a1",
         "lq":"http://77.88.196.133:8081/a1od/a1od-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/a1od/a1od-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-20
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-4
     }
 ,   {
         "name":"gtv",
         "lq":"http://77.88.196.133:8081/a1od/gtvod-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/a1od/gtvod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-30
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-6
     }
 ,   {
         "name":"stv",
         "lq":"http://77.88.196.133:8081/stvod/stvod-abr-lq/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/stvod/stvod-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-35
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-7
     }
 ,   {
         "name":"nemo",
         "lq":"http://77.88.196.133:8081/nemo/mor-sub/playlist.m3u8",
         "hq":"http://77.88.196.133:8081/nemo/mor-abr/playlist.m3u8",
-        "background_x_position_bw":-5,
-        "background_x_position_color":0,
-        "background_y_position":-45
+        "icon_x_position_bw":-1,
+        "icon_x_position_color":0,
+        "icon_y_position":-9
     }
 ]

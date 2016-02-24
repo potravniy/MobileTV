@@ -14,8 +14,7 @@ var $box = window.viewerState.$box,
     classList = window.viewerState.classList,
     init$videoHeight = undefined,
     init$videoWidth = undefined,
-    scaledHorisontally = false,
-    id = undefined
+    scaledHorisontally = false
 
 classList.add($svgScale, 'disabled')
 

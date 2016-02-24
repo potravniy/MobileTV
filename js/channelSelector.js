@@ -3,7 +3,7 @@
 var $video = window.viewerState.$video,
     $source = window.viewerState.$source,
     $slider = window.viewerState.$slider,
-    $sideMenuBox = window.viewerState.$sideMenuBox,
+    $box = window.viewerState.$box,
     classList = window.viewerState.classList,
     link = ''
 window.Hls = null
@@ -15,48 +15,32 @@ $slider.addEventListener('click', function(e){
         if(window.viewerState.active$input === e.target) {
             window.viewerState.active$input.checked = false
             window.viewerState.active$input = null
-            
             if(window.Hls && window.Hls.isSupported()) {
                 window.hls.destroy()
             } else {
                 $video.setAttribute('src', '')
                 $source.setAttribute('src', '')
             }
-
-            $video.style.backgroundSize = ""
-            classList.remove($sideMenuBox, 'show_footer')
+            classList.remove($video, 'active')
+            classList.remove($box, 'show_footer')
             $video.removeEventListener('error', failed)
-            $video.style.width = '100%'
-            $video.style.height = 'auto'
+            $video.load()
         } else {
             window.viewerState.active$input = e.target
-            window.viewerState.highQuality = false
             ch = e.target.getAttribute('id')
             link = window.viewerState.chList[ch].lq
-            
+            window.viewerState.highQuality = false
             if(window.Hls && window.Hls.isSupported()) {
-                if(window.hls) window.hls.destroy()
-                window.hls = new window.Hls();
-                window.hls.attachMedia(window.viewerState.$video);
-                window.hls.on(window.Hls.Events.MEDIA_ATTACHED,function() {
-                    console.log("video and window.hls.js are now bound together !");
-                    window.hls.loadSource(link);
-                    window.hls.on(window.Hls.Events.MANIFEST_PARSED, function(event,data) {
-                        for(var i=0; i<window.hls.levels.length; i++){
-                            console.log( i + '\tbitrate:' + window.hls.levels[i].bitrate + '\th:' + window.hls.levels[i].height + '\tw:' + window.hls.levels[i].width + '\n')
-                        }
-                    })
-                });
+                showVideoViaHls()
             } else {
                 $video.setAttribute('src', link)
                 $source.setAttribute('src', link)
             }
-
-            $video.style.backgroundSize = "0 0"
+            classList.add($video, 'active')
             $video.addEventListener('error', failed)
             if($video.play) $video.play();
             else alert ('video cannot play')
-            classList.add($sideMenuBox, 'show_footer')
+            classList.add($box, 'show_footer')
         }
     }
 })
@@ -77,26 +61,7 @@ function failed(e) {
        if (window.Hls && window.Hls.isSupported()){
            alert('Видео не может быть загружено из-за сбоя в в доступе к серверу или этот видеоформат не поддерживается Вашим браузером.');
        } else {
-            $video.removeEventListener('error', failed)
-            console.log('hls loading start ' + Date.now())
-            var script = document.createElement("script")
-            script.type = "text/javascript"
-            if (script.readyState){  //IE
-                script.onreadystatechange = function(){
-                    if (script.readyState == "loaded" ||
-                            script.readyState == "complete"){
-                        script.onreadystatechange = null;
-                        runHls()
-                    }
-                };
-            } else {  //Others
-                script.onload = function(){
-                    console.log('hls loaded ' + Date.now())
-                    runHls()
-                }
-            }
-            script.src = './js/hls.min.js'
-            document.getElementsByTagName("head")[0].appendChild(script)
+           loadHls()
        }
        break;
      default:
@@ -104,22 +69,32 @@ function failed(e) {
        break;
    }
 }
+function loadHls(){
+    $video.removeEventListener('error', failed)
+    var script = document.createElement("script")
+    script.type = "text/javascript"
+    if (script.readyState){  //IE
+        script.onreadystatechange = function(){
+            if (script.readyState == "loaded" ||
+                    script.readyState == "complete"){
+                script.onreadystatechange = null;
+                runHls()
+            }
+        };
+    } else {  //Others
+        script.onload = function(){
+            console.log('hls loaded ' + Date.now())
+            runHls()
+        }
+    }
+    script.src = './js/hls.min.js'
+    document.getElementsByTagName("head")[0].appendChild(script)
+}
 function runHls() {
     $video.setAttribute('src', '')
     $source.setAttribute('src', '')
-    console.log('calling window.hls ' + Date.now())
-    window.hls = new window.window.Hls();
-    window.hls.attachMedia(window.viewerState.$video);
-    window.hls.on(window.Hls.Events.MEDIA_ATTACHED, function() {
-        console.log("video and window.hls.js are now bound together !");
-        window.hls.loadSource(link);
-        window.hls.on(window.Hls.Events.MANIFEST_PARSED, function(event,data) {
-            for(var i=0; i<window.hls.levels.length; i++){
-                console.log( i + '\tbitrate:' + window.hls.levels[i].bitrate + '\th:' + window.hls.levels[i].height + '\tw:' + window.hls.levels[i].width + '\n')
-            }
-        })
-    });
-    if($video.play) $video.play();
+    showVideoViaHls()
+    if($video.play) $video.play()
     else alert ('video cannot play')
 
     window.hls.on(window.Hls.Events.ERROR,function(event,data) {
@@ -141,4 +116,17 @@ function runHls() {
             }
         }
     })
+}
+function showVideoViaHls(){
+    if(window.hls) window.hls.destroy()
+    window.hls = new window.Hls();
+    window.hls.attachMedia(window.viewerState.$video);
+    window.hls.on(window.Hls.Events.MEDIA_ATTACHED,function() {
+        window.hls.loadSource(link);
+        window.hls.on(window.Hls.Events.MANIFEST_PARSED, function(event,data) {
+            for(var i=0; i<window.hls.levels.length; i++){
+                console.log( i + '\tbitrate:' + window.hls.levels[i].bitrate + '\th:' + window.hls.levels[i].height + '\tw:' + window.hls.levels[i].width + '\n')
+            }
+        })
+    });
 }

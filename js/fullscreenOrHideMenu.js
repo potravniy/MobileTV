@@ -5,11 +5,12 @@ var $box = window.viewerState.$box,
     $btnFullScrOff = window.viewerState.$btnFullScrOff,
     $btnMenuOff = window.viewerState.$btnMenuOff,
     $btnMenuOn = window.viewerState.$btnMenuOn,
-    $sideMenuBox = window.viewerState.$sideMenuBox,
+    $box = window.viewerState.$box,
     $control = window.viewerState.$control,
     $svgFullScrOn = document.querySelector('.btn__fullscr.on'),
     durationCtrlVisible = window.viewerState.durationCtrlVisible,
     classList = window.viewerState.classList,
+    is$bodyHeightChanged = false,
     id = undefined
 
 if ( window.viewerState.isFullScreenAllowed ) {
@@ -22,7 +23,7 @@ if ( window.viewerState.isFullScreenAllowed ) {
   $btnFullScrOn.addEventListener('click', function () {
     alert('Чтобы обрести полноэкранный режим надо сделать всего несколько шагов:\n'
         + 'Шаг 1. Нажмите на кнопку "Отправить" (выглядит как квадрат со стрелочкой вверх) справа вверху экрана и выберите пункт: На экран «Домой».\n'
-        + 'Шаг 2. Укажите желаемое название и нажмите "Добавить".\n'
+        + 'Шаг 2. Укажите желаемое название (например "Одесское ТВ") и нажмите "Добавить".\n'
         + 'После нажатия кнопки "Добавить" Вас перебросит на рабочий стол, где Вы сможете увидеть свежесозданную ссылку.\n'
         + 'Зайдя на сайт нажатием на эту ссылку Вы всегда будете смотреть ТВ в полноэкранном режиме.\n'
         + 'Для удаления ссылки нужно ее нажать и подержать, затем нажать появившийся крестик в левом верхнем углу.')
@@ -39,51 +40,46 @@ if ( window.viewerState.isFullScreenAllowed ) {
     $btnMenuOn.addEventListener('click', leaveWatchMode)
 }
 
-document.addEventListener("fullscreenchange", fsHandler)
+document.addEventListener("fullscreenchange",       fsHandler)
 document.addEventListener("webkitfullscreenchange", fsHandler)
-document.addEventListener("mozfullscreenchange", fsHandler)
-document.addEventListener("MSFullscreenChange", fsHandler)
+document.addEventListener("mozfullscreenchange",    fsHandler)
+document.addEventListener("MSFullscreenChange",     fsHandler)
 
 function fsHandler() {
-    if(window.viewerState.ask$boxInFullScreen()){
-        startWatchMode()
-    } else {
-        leaveWatchMode()
-    }
+    if (window.viewerState.ask$boxInFullScreen())   startWatchMode()
+    else                                            leaveWatchMode()
 }
 function goFullScreen() {
-    if ($box.requestFullscreen) {
-        $box.requestFullscreen()
-    } else if ($box.mozRequestFullScreen) {
-        $box.mozRequestFullScreen()
-    } else if ($box.webkitRequestFullscreen) {
-        $box.webkitRequestFullscreen()
-    } else if ($box.msRequestFullscreen) {
-        $box.msRequestFullscreen()
-    }
+         if ($box.requestFullscreen)        $box.requestFullscreen()
+    else if ($box.mozRequestFullScreen)     $box.mozRequestFullScreen()
+    else if ($box.webkitRequestFullscreen)  $box.webkitRequestFullscreen()
+    else if ($box.msRequestFullscreen)      $box.msRequestFullscreen()
 }
 function getOffFullscreen() {
-  if(document.exitFullscreen) {
-    document.exitFullscreen();
-  } else if(document.mozCancelFullScreen) {
-    document.mozCancelFullScreen();
-  } else if(document.webkitExitFullscreen) {
-    document.webkitExitFullscreen();
-  }else if (document.msExitFullscreen) {
-	document.msExitFullscreen();
-  }
+       if (document.exitFullscreen)         document.exitFullscreen()
+  else if (document.mozCancelFullScreen)    document.mozCancelFullScreen()
+  else if (document.webkitExitFullscreen)   document.webkitExitFullscreen()
+  else if (document.msExitFullscreen)       document.msExitFullscreen()
 }
 function startWatchMode(e) {
-    classList.add($sideMenuBox, 'hide_menu')
+    classList.add($box, 'hide_menu')
     $box.addEventListener('click', screenClickHandler)
     $control.addEventListener('click', controlClickHandler)
+    if(document.querySelector('body').clientHeight < window.screen.availHeight){
+        document.querySelector('body').style.height = window.screen.availHeight + 'px'
+        is$bodyHeightChanged = true
+    }
 }
 function leaveWatchMode(e) {
     clearTimeout(id)
     classList.remove($control, 'show_control')
     $control.removeEventListener('click', controlClickHandler)
     $box.removeEventListener('click', screenClickHandler)
-    classList.remove($sideMenuBox, 'hide_menu')
+    classList.remove($box, 'hide_menu')
+    if(is$bodyHeightChanged){
+        document.querySelector('body').style.height = ''
+        is$bodyHeightChanged = false
+    }
 }
 function screenClickHandler(e) {
     e.stopPropagation()

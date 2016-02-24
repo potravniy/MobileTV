@@ -1,5 +1,6 @@
 'use strict'
 
+//  polyfill for element.classList 
 module.exports = {
     'contains': function(el, cls) {
         if(el.classList) return el.classList.contains(cls)
