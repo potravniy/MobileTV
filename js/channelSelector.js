@@ -18,8 +18,9 @@ $slider.addEventListener('click', function(e){
             if(window.Hls && window.Hls.isSupported()) {
                 window.hls.destroy()
             } else {
-                $video.setAttribute('src', '')
-                $source.setAttribute('src', '')
+                // $video.pause()
+                $video.removeAttribute('src')
+                $source.removeAttribute('src')
             }
             classList.remove($video, 'active')
             classList.remove($box, 'show_footer')

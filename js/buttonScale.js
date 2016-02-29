@@ -30,18 +30,21 @@ function init(){
     setTimeout(scaleHorisontally, 300)
 }
 function scaleHorisontally() {
+    console.log('$box.clientWidth: ' + $box.clientWidth
+    + '\n$video.videoHeight: ' + $video.videoHeight
+    + '\n$video.videoWidth: ' + $video.videoWidth)
     $video.style.width = $box.clientWidth + 'px'
     $video.style.height = $box.clientWidth * $video.videoHeight / $video.videoWidth + 'px'
     scaledHorisontally = true
     console.log('screen: ' + $box.clientWidth + 'x' + $box.clientHeight + "\n"
-                + 'video: ' + $box.clientWidth + 'x' + $box.clientWidth * $video.videoHeight / $video.videoWidth)
+                + 'video: ' + $box.clientWidth + 'x' + $box.clientWidth * $video.videoHeight / $video.videoWidth + '\n')
 }
 function scaleVertically() {
     $video.style.width = $box.clientHeight * $video.videoWidth / $video.videoHeight + 'px'
     $video.style.height = $box.clientHeight + 'px'
     scaledHorisontally = false
     console.log('screen: ' + $box.clientWidth + 'x' + $box.clientHeight + "\n"
-                + 'video: ' + $box.clientHeight * $video.videoWidth / $video.videoHeight + 'x' + $box.clientHeight)
+                + 'video: ' + $box.clientHeight * $video.videoWidth / $video.videoHeight + 'x' + $box.clientHeight + '\n')
 }
 
 function fullScreenChange() {

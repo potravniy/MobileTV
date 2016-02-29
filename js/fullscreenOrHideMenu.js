@@ -7,6 +7,7 @@ var $box = window.viewerState.$box,
     $btnMenuOn = window.viewerState.$btnMenuOn,
     $box = window.viewerState.$box,
     $control = window.viewerState.$control,
+    $body = document.querySelector('body'),
     $svgFullScrOn = document.querySelector('.btn__fullscr.on'),
     durationCtrlVisible = window.viewerState.durationCtrlVisible,
     classList = window.viewerState.classList,
@@ -46,8 +47,31 @@ document.addEventListener("mozfullscreenchange",    fsHandler)
 document.addEventListener("MSFullscreenChange",     fsHandler)
 
 function fsHandler() {
-    if (window.viewerState.ask$boxInFullScreen())   startWatchMode()
-    else                                            leaveWatchMode()
+    if (window.viewerState.ask$boxInFullScreen()) {
+        console.log('$body.clientHeight: '+$body.clientHeight
+        + '\nwindow.screen.availHeight: '+window.screen.availHeight
+        + '\nwindow.outerHeight: ' + window.outerHeight)
+        if($body.clientHeight < window.screen.availHeight){
+            $body.style.height = window.screen.availHeight + 'px'
+            is$bodyHeightChanged = true
+            console.log('$body.clientHeight: '+$body.clientHeight
+            + '\nwindow.screen.availHeight: '+window.screen.availHeight
+            + '\nwindow.outerHeight: ' + window.outerHeight)
+            // if(window.outerHeight && $body.clientHeight > window.outerHeight) {
+            //     $body.style.height = window.outerHeight + 'px'
+            // }
+        }
+        // console.log('$body.clientHeight: '+$body.clientHeight
+        // + '\nwindow.screen.availHeight: '+window.screen.availHeight
+        // + '\nwindow.outerHeight: ' + window.outerHeight)
+        startWatchMode()
+    } else {
+        if(is$bodyHeightChanged){
+            $body.style.height = ''
+            is$bodyHeightChanged = false
+        }
+        leaveWatchMode()
+    }
 }
 function goFullScreen() {
          if ($box.requestFullscreen)        $box.requestFullscreen()
@@ -65,10 +89,6 @@ function startWatchMode(e) {
     classList.add($box, 'hide_menu')
     $box.addEventListener('click', screenClickHandler)
     $control.addEventListener('click', controlClickHandler)
-    if(document.querySelector('body').clientHeight < window.screen.availHeight){
-        document.querySelector('body').style.height = window.screen.availHeight + 'px'
-        is$bodyHeightChanged = true
-    }
 }
 function leaveWatchMode(e) {
     clearTimeout(id)
@@ -76,10 +96,6 @@ function leaveWatchMode(e) {
     $control.removeEventListener('click', controlClickHandler)
     $box.removeEventListener('click', screenClickHandler)
     classList.remove($box, 'hide_menu')
-    if(is$bodyHeightChanged){
-        document.querySelector('body').style.height = ''
-        is$bodyHeightChanged = false
-    }
 }
 function screenClickHandler(e) {
     e.stopPropagation()
