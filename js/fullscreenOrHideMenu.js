@@ -48,22 +48,10 @@ document.addEventListener("MSFullscreenChange",     fsHandler)
 
 function fsHandler() {
     if (window.viewerState.ask$boxInFullScreen()) {
-        console.log('$body.clientHeight: '+$body.clientHeight
-        + '\nwindow.screen.availHeight: '+window.screen.availHeight
-        + '\nwindow.outerHeight: ' + window.outerHeight)
         if($body.clientHeight < window.screen.availHeight){
             $body.style.height = window.screen.availHeight + 'px'
             is$bodyHeightChanged = true
-            console.log('$body.clientHeight: '+$body.clientHeight
-            + '\nwindow.screen.availHeight: '+window.screen.availHeight
-            + '\nwindow.outerHeight: ' + window.outerHeight)
-            // if(window.outerHeight && $body.clientHeight > window.outerHeight) {
-            //     $body.style.height = window.outerHeight + 'px'
-            // }
         }
-        // console.log('$body.clientHeight: '+$body.clientHeight
-        // + '\nwindow.screen.availHeight: '+window.screen.availHeight
-        // + '\nwindow.outerHeight: ' + window.outerHeight)
         startWatchMode()
     } else {
         if(is$bodyHeightChanged){

@@ -20,7 +20,7 @@ oReq.open("GET", "./channels.json")
 oReq.send()
 
 function tryAgain(e) {
-    console.log(e)
+    // console.log(e)
     if(attempt < 3) oReq.send()
 }
 function processChList () {
